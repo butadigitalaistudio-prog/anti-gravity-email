@@ -189,52 +189,139 @@ tailwind.config = {
     renderPanel(email);
   }
 
+  let panelView = 'email'; // 'email' | 'ai'
+
   function renderPanel(email) {
     const panel = document.getElementById('ai-panel');
     panel.innerHTML = `
-      <div class="flex items-center gap-3 mb-8">
-        <div class="p-2 bg-primary/20 rounded-lg">
-          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">auto_awesome</span>
+      <!-- Header with sender info -->
+      <div class="mb-5">
+        <div class="flex items-center gap-3 mb-1">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0" style="background:linear-gradient(135deg,#6d3bd7,#0566d9)">${email.initials}</div>
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-white text-sm truncate">${email.sender}</p>
+            <p class="text-xs text-slate-500 truncate">${email.email || ''}</p>
+          </div>
+          <span class="text-xs text-slate-500 shrink-0">${email.time || ''}</span>
         </div>
-        <h3 class="font-headline font-bold text-xl tracking-tight">AI สรุปอัจฉริยะ</h3>
+        <p class="font-semibold text-sm text-on-surface mt-2 leading-snug">${email.subject}</p>
       </div>
 
-      <div class="bg-surface-container p-5 rounded-lg border border-primary/10 mb-6">
-        <p id="ai-summary-text" class="text-sm text-on-surface-variant leading-relaxed">${email.summary || email.snippet || 'วิเคราะห์โดย AI...'}</p>
+      <!-- Tab Toggle -->
+      <div class="flex gap-1 p-1 bg-surface-container-lowest rounded-xl mb-5">
+        <button id="tab-email" onclick="switchTab('email')"
+          class="flex-1 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5
+          ${panelView === 'email' ? 'bg-surface-container-high text-white shadow-lg' : 'text-slate-500 hover:text-white'}">
+          <span class="material-symbols-outlined text-sm">mail</span> อ่านอีเมล
+        </button>
+        <button id="tab-ai" onclick="switchTab('ai')"
+          class="flex-1 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5
+          ${panelView === 'ai' ? 'bg-surface-container-high text-white shadow-lg' : 'text-slate-500 hover:text-white'}">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1;">auto_awesome</span> AI สรุป
+        </button>
       </div>
 
-      <h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">จุดสำคัญ</h4>
-      <ul class="space-y-2.5 mb-6">
-        ${(email.keyPoints && email.keyPoints.length ? email.keyPoints : ['กำลังวิเคราะห์จุดสำคัญ...']).map(p => `
-        <li class="flex items-start gap-3 text-sm text-on-surface">
-          <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>${p}
-        </li>`).join('')}
-      </ul>
-
-      <h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">สิ่งที่ต้องทำ</h4>
-      <div class="space-y-2 mb-6">
-        ${(email.actions && email.actions.length ? email.actions : ['อ่านอีเมลแล้วตอบกลับ']).map(a => `
-        <label class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded-lg border border-transparent hover:border-primary/20 cursor-pointer">
-          <input class="w-4 h-4 rounded accent-violet-400" type="checkbox"/>
-          <span class="text-sm">${a}</span>
-        </label>`).join('')}
-      </div>
-
-      <h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">ตอบกลับที่แนะนำ</h4>
-      <div class="relative mb-4">
-        <textarea id="reply-box" class="w-full h-32 bg-surface-container-lowest border-none rounded-xl p-4 text-sm text-on-surface leading-relaxed focus:ring-1 focus:ring-primary/40 outline-none resize-none">${email.suggestedReply || ('เรียน ' + email.sender + ',\n\nขอบคุณสำหรับอีเมลนี้...')}</textarea>
-        <div class="absolute bottom-3 right-3 flex gap-1.5">
-          <button onclick="navigator.clipboard.writeText(document.getElementById('reply-box').value)" class="p-1.5 bg-surface-container-high rounded-lg text-slate-400 hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-sm">content_copy</span>
+      <!-- Email Body View -->
+      <div id="view-email" class="${panelView === 'email' ? '' : 'hidden'}">
+        ${(email.bodyHtml) ? `
+        <iframe id="email-iframe" sandbox="allow-same-origin"
+          class="w-full rounded-xl border border-white/5 bg-white"
+          style="min-height:520px;height:auto;"></iframe>` : `
+        <div class="bg-surface-container rounded-xl p-5 text-sm text-on-surface-variant leading-relaxed whitespace-pre-wrap font-mono overflow-auto" style="max-height:520px">
+${(email.body || email.snippet || 'ไม่มีเนื้อหา').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+        </div>`}
+        <div class="mt-4 flex gap-2">
+          <button onclick="switchTab('ai')" class="flex-1 py-3 bg-primary/10 text-primary font-bold rounded-xl text-sm hover:bg-primary/20 transition-colors flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1;">auto_awesome</span> ให้ AI สรุปอีเมลนี้
           </button>
         </div>
       </div>
 
-      <button onclick="handleSendReply('${email.id}', '${email.email}', '${email.subject.replace(/'/g, '')}')" class="w-full py-4 premium-gradient text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined">send</span>
-        ส่งการตอบกลับ
-      </button>`;
+      <!-- AI Analysis View -->
+      <div id="view-ai" class="${panelView === 'ai' ? '' : 'hidden'}">
+        <div class="bg-surface-container p-4 rounded-xl border border-primary/10 mb-5">
+          <p id="ai-summary-text" class="text-sm text-on-surface-variant leading-relaxed">${email.summary || email.snippet || 'กำลังวิเคราะห์...'}</p>
+        </div>
+
+        <h4 class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-2.5">จุดสำคัญ</h4>
+        <ul class="space-y-2 mb-5">
+          ${(email.keyPoints && email.keyPoints.length ? email.keyPoints : ['กำลังวิเคราะห์...']).map(p => `
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>${p}
+          </li>`).join('')}
+        </ul>
+
+        <h4 class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-2.5">สิ่งที่ต้องทำ</h4>
+        <div class="space-y-2 mb-5">
+          ${(email.actions && email.actions.length ? email.actions : ['ตอบกลับอีเมล']).map(a => `
+          <label class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded-lg border border-transparent hover:border-primary/20 cursor-pointer">
+            <input class="w-4 h-4 rounded accent-violet-400" type="checkbox"/>
+            <span class="text-sm">${a}</span>
+          </label>`).join('')}
+        </div>
+
+        <h4 class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-2.5">ตอบกลับที่แนะนำ</h4>
+        <div class="relative mb-4">
+          <textarea id="reply-box" class="w-full h-28 bg-surface-container-lowest border-none rounded-xl p-4 text-sm text-on-surface leading-relaxed focus:ring-1 focus:ring-primary/40 outline-none resize-none">${email.suggestedReply || ('เรียน ' + email.sender + ',\n\nขอบคุณสำหรับอีเมลนี้...')}</textarea>
+          <button onclick="navigator.clipboard.writeText(document.getElementById('reply-box').value)" class="absolute bottom-3 right-3 p-1.5 bg-surface-container-high rounded-lg text-slate-400 hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-sm">content_copy</span>
+          </button>
+        </div>
+        <button onclick="handleSendReply('${email.id}','${email.email}','${email.subject.replace(/'/g,'')}')" class="w-full py-3.5 premium-gradient text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 text-sm">
+          <span class="material-symbols-outlined text-sm">send</span>ส่งการตอบกลับ
+        </button>
+      </div>`;
+
+    // Inject HTML into iframe safely
+    if (email.bodyHtml && panelView === 'email') {
+      const iframe = document.getElementById('email-iframe');
+      if (iframe) {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        doc.open();
+        doc.write(`<!DOCTYPE html><html><head>
+          <style>
+            * { box-sizing: border-box; }
+            body { font-family: Inter, 'Noto Sans Thai', sans-serif; font-size: 14px; line-height: 1.6;
+                   color: #1a1a2e; background: #fff; margin: 0; padding: 16px; word-break: break-word; }
+            img { max-width: 100%; height: auto; }
+            a { color: #6d3bd7; }
+            table { max-width: 100%; }
+          </style></head><body>${email.bodyHtml}</body></html>`);
+        doc.close();
+        // Auto-resize iframe
+        iframe.style.height = Math.min(600, doc.body.scrollHeight + 32) + 'px';
+      }
+    }
   }
+
+  function switchTab(view) {
+    panelView = view;
+    const emailView = document.getElementById('view-email');
+    const aiView = document.getElementById('view-ai');
+    const tabEmail = document.getElementById('tab-email');
+    const tabAI = document.getElementById('tab-ai');
+    if (!emailView) return;
+
+    if (view === 'email') {
+      emailView.classList.remove('hidden');
+      aiView.classList.add('hidden');
+      tabEmail.classList.add('bg-surface-container-high','text-white','shadow-lg');
+      tabEmail.classList.remove('text-slate-500');
+      tabAI.classList.remove('bg-surface-container-high','text-white','shadow-lg');
+      tabAI.classList.add('text-slate-500');
+    } else {
+      aiView.classList.remove('hidden');
+      emailView.classList.add('hidden');
+      tabAI.classList.add('bg-surface-container-high','text-white','shadow-lg');
+      tabAI.classList.remove('text-slate-500');
+      tabEmail.classList.remove('bg-surface-container-high','text-white','shadow-lg');
+      tabEmail.classList.add('text-slate-500');
+      // Trigger AI summary if not loaded
+      if (selectedEmail && !selectedEmail.aiLoaded && isSignedIn()) loadAISummary(selectedEmail);
+    }
+  }
+
+
 
   async function handleSendReply(msgId, toEmail, subject) {
     const body = document.getElementById('reply-box').value;

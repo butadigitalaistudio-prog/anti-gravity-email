@@ -65,7 +65,9 @@ function parseGmailMessage(msg) {
   const time = date.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
   const dateStr = date.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
 
-  const body = extractBody(msg.payload);
+  const bodyData = extractBody(msg.payload);
+  const body = bodyData.text;
+  const bodyHtml = bodyData.html;
   const snippet = msg.snippet || '';
   const score = computePriorityScore(msg, headers, body);
   const category = classifyEmail(headers, body, subject);
@@ -81,6 +83,7 @@ function parseGmailMessage(msg) {
     time,
     dateStr,
     body,
+    bodyHtml,
     snippet,
     score,
     category: category.key,
@@ -97,24 +100,23 @@ function parseGmailMessage(msg) {
 
 // ---- Extract Email Body from MIME ----
 function extractBody(payload) {
-  if (!payload) return '';
-  // Try plain text first
-  if (payload.mimeType === 'text/plain' && payload.body?.data) {
-    return atob(payload.body.data.replace(/-/g, '+').replace(/_/g, '/'));
+  const result = { text: '', html: '' };
+  if (!payload) return result;
+  _extractBodyParts(payload, result);
+  return result;
+}
+
+function _extractBodyParts(payload, result) {
+  if (payload.mimeType === 'text/plain' && payload.body?.data && !result.text) {
+    result.text = atob(payload.body.data.replace(/-/g, '+').replace(/_/g, '/'));
   }
-  // Try HTML
-  if (payload.mimeType === 'text/html' && payload.body?.data) {
-    const html = atob(payload.body.data.replace(/-/g, '+').replace(/_/g, '/'));
-    return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  if (payload.mimeType === 'text/html' && payload.body?.data && !result.html) {
+    result.html = atob(payload.body.data.replace(/-/g, '+').replace(/_/g, '/'));
+    if (!result.text) result.text = result.html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   }
-  // Recurse parts
   if (payload.parts) {
-    for (const part of payload.parts) {
-      const text = extractBody(part);
-      if (text) return text;
-    }
+    for (const part of payload.parts) _extractBodyParts(part, result);
   }
-  return '';
 }
 
 // ---- Heuristic Priority Scoring ----
