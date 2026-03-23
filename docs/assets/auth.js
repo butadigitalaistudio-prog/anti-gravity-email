@@ -39,21 +39,26 @@ function isSignedIn() { return !!getAccessToken(); }
 
 // ---- Initialize Google Identity Services ----
 function initGoogleAuth(onSignInCallback) {
-  if (!window.google) { console.error('GIS library not loaded'); return; }
-
-  tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: GOOGLE_CLIENT_ID,
-    scope: GMAIL_SCOPES,
-    callback: (response) => {
-      if (response.error) { console.error('OAuth error:', response); return; }
-      saveToken(response);
-      if (onSignInCallback) onSignInCallback(response);
-    },
-  });
-
-  // Auto-restore session
-  const stored = loadToken();
-  if (stored && onSignInCallback) onSignInCallback(stored);
+  // Poll until google GIS library is ready (handles async load timing)
+  function tryInit() {
+    if (!window.google || !window.google.accounts) {
+      setTimeout(tryInit, 100);
+      return;
+    }
+    tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: GOOGLE_CLIENT_ID,
+      scope: GMAIL_SCOPES,
+      callback: (response) => {
+        if (response.error) { console.error('OAuth error:', response); return; }
+        saveToken(response);
+        if (onSignInCallback) onSignInCallback(response);
+      },
+    });
+    // Auto-restore session
+    const stored = loadToken();
+    if (stored && onSignInCallback) onSignInCallback(stored);
+  }
+  tryInit();
 }
 
 // ---- Sign In ----
