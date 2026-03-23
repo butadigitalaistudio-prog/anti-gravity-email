@@ -5,6 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Zero-G Mail | อินบ็อกซ์ AI</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://accounts.google.com/gsi/client" async></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script>
@@ -44,14 +45,9 @@ tailwind.config = {
       <span class="text-slate-400 hover:text-white transition-colors cursor-pointer">รอดำเนินการ: 5</span>
     </div>
   </div>
-  <div class="flex items-center gap-6">
-    <button class="bg-surface-container-highest/50 px-5 py-2 rounded-full hover:text-white transition-colors text-sm flex items-center gap-2">
-      ✨ สรุปวันนี้
-    </button>
-    <div class="flex gap-4 text-slate-400">
-      <span class="material-symbols-outlined cursor-pointer hover:text-white transition-colors">notifications</span>
-      <span class="material-symbols-outlined cursor-pointer hover:text-white transition-colors">account_circle</span>
-    </div>
+  <div class="flex items-center gap-4">
+    <span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-white transition-colors">notifications</span>
+    <div id="auth-btn"></div>
   </div>
 </header>
 
@@ -127,16 +123,22 @@ tailwind.config = {
 
 <script src="../assets/mock-data.js"></script>
 <script src="../assets/nav.js"></script>
+<script src="../assets/auth.js"></script>
+<script src="../assets/gmail.js"></script>
+<script src="../assets/gemini.js"></script>
 <script>
   renderSideNav('อินบ็อกซ์ AI', '../');
 
+  let allEmails = [...MOCK_EMAILS];
   let selectedEmail = null;
   let currentFilter = 'all';
 
   function renderFeed(filter) {
     const feed = document.getElementById('email-feed');
     feed.innerHTML = '';
-    const emails = filter === 'all' ? MOCK_EMAILS : MOCK_EMAILS.filter(e => e.category === filter);
+    const emails = filter === 'all' ? allEmails : allEmails.filter(e => e.category === filter);
+    // Update count badge
+    document.querySelector('[data-cat="all"] span.bg-primary\/20').textContent = allEmails.length;
     emails.forEach(email => {
       const style = getScoreStyle(email.score);
       const isSelected = selectedEmail && selectedEmail.id === email.id;
@@ -157,9 +159,33 @@ tailwind.config = {
           </span>
           <span class="text-xs text-on-surface-variant">Score: <span class="${style.color} font-bold">${email.score}</span></span>
         </div>`;
-      div.addEventListener('click', () => { selectedEmail = email; renderFeed(currentFilter); renderPanel(email); });
+      div.addEventListener('click', () => {
+        selectedEmail = email;
+        renderFeed(currentFilter);
+        renderPanel(email);
+        // Lazy-load AI summary if real Gmail email
+        if (!email.aiLoaded && isSignedIn()) loadAISummary(email);
+      });
       feed.appendChild(div);
     });
+  }
+
+  async function loadAISummary(email) {
+    const panel = document.getElementById('ai-panel');
+    const summaryEl = panel.querySelector('#ai-summary-text');
+    const replyEl = panel.querySelector('#reply-box');
+    if (!summaryEl) return;
+    summaryEl.textContent = 'กำลังวิเคราะห์...';
+    const result = await summarizeEmail(email.body || email.snippet, email.subject, email.sender);
+    email.aiLoaded = true;
+    email.summary = result.summary;
+    email.keyPoints = result.keyPoints || [];
+    email.actions = result.actions || [];
+    if (replyEl) {
+      const reply = await suggestReply(email.body || email.snippet, email.subject, email.sender);
+      email.suggestedReply = reply;
+    }
+    renderPanel(email);
   }
 
   function renderPanel(email) {
@@ -173,12 +199,12 @@ tailwind.config = {
       </div>
 
       <div class="bg-surface-container p-5 rounded-lg border border-primary/10 mb-6">
-        <p class="text-sm text-on-surface-variant leading-relaxed">${email.summary}</p>
+        <p id="ai-summary-text" class="text-sm text-on-surface-variant leading-relaxed">${email.summary || email.snippet || 'วิเคราะห์โดย AI...'}</p>
       </div>
 
       <h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">จุดสำคัญ</h4>
       <ul class="space-y-2.5 mb-6">
-        ${email.keyPoints.map(p => `
+        ${(email.keyPoints && email.keyPoints.length ? email.keyPoints : ['กำลังวิเคราะห์จุดสำคัญ...']).map(p => `
         <li class="flex items-start gap-3 text-sm text-on-surface">
           <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>${p}
         </li>`).join('')}
@@ -186,7 +212,7 @@ tailwind.config = {
 
       <h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">สิ่งที่ต้องทำ</h4>
       <div class="space-y-2 mb-6">
-        ${email.actions.map(a => `
+        ${(email.actions && email.actions.length ? email.actions : ['อ่านอีเมลแล้วตอบกลับ']).map(a => `
         <label class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded-lg border border-transparent hover:border-primary/20 cursor-pointer">
           <input class="w-4 h-4 rounded accent-violet-400" type="checkbox"/>
           <span class="text-sm">${a}</span>
@@ -195,21 +221,25 @@ tailwind.config = {
 
       <h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">ตอบกลับที่แนะนำ</h4>
       <div class="relative mb-4">
-        <textarea id="reply-box" class="w-full h-32 bg-surface-container-lowest border-none rounded-xl p-4 text-sm text-on-surface leading-relaxed focus:ring-1 focus:ring-primary/40 outline-none resize-none">${email.suggestedReply}</textarea>
+        <textarea id="reply-box" class="w-full h-32 bg-surface-container-lowest border-none rounded-xl p-4 text-sm text-on-surface leading-relaxed focus:ring-1 focus:ring-primary/40 outline-none resize-none">${email.suggestedReply || ('เรียน ' + email.sender + ',\n\nขอบคุณสำหรับอีเมลนี้...')}</textarea>
         <div class="absolute bottom-3 right-3 flex gap-1.5">
-          <button class="p-1.5 bg-surface-container-high rounded-lg text-slate-400 hover:text-white transition-colors">
+          <button onclick="navigator.clipboard.writeText(document.getElementById('reply-box').value)" class="p-1.5 bg-surface-container-high rounded-lg text-slate-400 hover:text-white transition-colors">
             <span class="material-symbols-outlined text-sm">content_copy</span>
-          </button>
-          <button class="p-1.5 bg-surface-container-high rounded-lg text-slate-400 hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-sm">edit</span>
           </button>
         </div>
       </div>
 
-      <button class="w-full py-4 premium-gradient text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2">
+      <button onclick="handleSendReply('${email.id}', '${email.email}', '${email.subject.replace(/'/g, '')}')" class="w-full py-4 premium-gradient text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2">
         <span class="material-symbols-outlined">send</span>
         ส่งการตอบกลับ
       </button>`;
+  }
+
+  async function handleSendReply(msgId, toEmail, subject) {
+    const body = document.getElementById('reply-box').value;
+    if (!isSignedIn()) { signIn(); return; }
+    const ok = await sendReply(msgId, toEmail, subject, body);
+    alert(ok ? 'ส่งสำเร็จแล้ว! ✅' : 'เกิดข้อผิดพลาดในการส่ง');
   }
 
   function renderEmptyPanel() {
@@ -238,20 +268,32 @@ tailwind.config = {
     });
   });
 
-  // Init
-  renderFeed('all');
-  // Auto-select first email
-  selectedEmail = MOCK_EMAILS[0];
-  renderFeed('all');
-  renderPanel(MOCK_EMAILS[0]);
+  // Load emails (real or mock)
+  async function initInbox() {
+    if (isSignedIn()) {
+      document.getElementById('email-feed').innerHTML = '<div class="space-y-3 animate-pulse">' + '<div class="h-20 bg-surface-container-high rounded-lg"></div>'.repeat(5) + '</div>';
+      const emails = await fetchEmails(20);
+      if (emails.length) {
+        allEmails = emails.sort((a, b) => b.score - a.score);
+        document.querySelector('[data-cat="all"] span.bg-primary\/20').textContent = allEmails.length;
+      }
+    }
+    renderFeed('all');
+    selectedEmail = allEmails[0] || null;
+    if (selectedEmail) { renderFeed('all'); renderPanel(selectedEmail); if (!selectedEmail.aiLoaded && isSignedIn()) loadAISummary(selectedEmail); }
+    else renderEmptyPanel();
 
-  // URL param
-  const params = new URLSearchParams(window.location.search);
-  const emailId = parseInt(params.get('email'));
-  if (emailId) {
-    const found = MOCK_EMAILS.find(e => e.id === emailId);
-    if (found) { selectedEmail = found; renderFeed('all'); renderPanel(found); }
+    // URL param
+    const params = new URLSearchParams(window.location.search);
+    const emailId = params.get('email');
+    if (emailId) {
+      const found = allEmails.find(e => String(e.id) === emailId);
+      if (found) { selectedEmail = found; renderFeed('all'); renderPanel(found); if (!found.aiLoaded && isSignedIn()) loadAISummary(found); }
+    }
   }
+
+  renderAuthButton('auth-btn', () => initInbox());
+  initInbox();
 </script>
 </body>
 </html>
