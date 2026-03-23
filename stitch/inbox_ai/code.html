@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zero-G Intelligence | Anti-Gravity Inbox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#3f2300",
+              "on-tertiary": "#482900",
+              "primary-fixed-dim": "#d0bcff",
+              "secondary-fixed": "#d8e2ff",
+              "on-primary-container": "#340080",
+              "primary": "#d0bcff",
+              "surface-container-lowest": "#060e20",
+              "surface-container-high": "#222a3d",
+              "on-secondary-fixed-variant": "#004395",
+              "primary-fixed": "#e9ddff",
+              "secondary-fixed-dim": "#adc6ff",
+              "error-container": "#93000a",
+              "tertiary": "#ffb869",
+              "on-primary": "#3c0091",
+              "surface-container": "#171f33",
+              "on-tertiary-fixed": "#2c1700",
+              "tertiary-fixed": "#ffdcbb",
+              "on-tertiary-fixed-variant": "#673d00",
+              "surface-container-low": "#131b2e",
+              "on-secondary-fixed": "#001a42",
+              "on-error": "#690005",
+              "on-surface-variant": "#cbc3d7",
+              "secondary-container": "#0566d9",
+              "tertiary-fixed-dim": "#ffb869",
+              "on-background": "#dae2fd",
+              "inverse-on-surface": "#283044",
+              "surface-container-highest": "#2d3449",
+              "surface": "#0b1326",
+              "inverse-primary": "#6d3bd7",
+              "outline-variant": "#494454",
+              "inverse-surface": "#dae2fd",
+              "background": "#0b1326",
+              "primary-container": "#a078ff",
+              "surface-bright": "#31394d",
+              "on-secondary-container": "#e6ecff",
+              "tertiary-container": "#ca801e",
+              "outline": "#958ea0",
+              "on-surface": "#dae2fd",
+              "error": "#ffb4ab",
+              "surface-dim": "#0b1326",
+              "on-primary-fixed-variant": "#5516be",
+              "on-primary-fixed": "#23005c",
+              "secondary": "#adc6ff",
+              "surface-tint": "#d0bcff",
+              "surface-variant": "#2d3449",
+              "on-secondary": "#002e6a",
+              "on-error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: rgba(208, 188, 255, 0.1); border-radius: 10px; }
+      .glass-panel {
+        background: rgba(23, 31, 51, 0.6);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-[#0b1326] bg-gradient-to-r from-[#0b1326] to-[#0f172a] flex flex-col py-8 z-50 font-manrope tracking-tight">
+<div class="px-8 mb-10">
+<h1 class="text-2xl font-bold tracking-tighter text-white">Zero-G Mail</h1>
+<p class="text-xs text-slate-400 font-medium">Weightless Intel</p>
+</div>
+<div class="px-4 mb-8">
+<button class="w-full py-4 bg-gradient-to-r from-primary to-secondary-container text-on-primary font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 scale-95 active:scale-90 transition-all">
+<span class="material-symbols-outlined">edit</span>
+                Compose
+            </button>
+</div>
+<nav class="flex-1 space-y-1 px-4">
+<!-- Dashboard -->
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<!-- Inbox AI (ACTIVE) -->
+<a class="flex items-center gap-4 px-4 py-3 text-violet-400 font-bold bg-violet-400/10 rounded-r-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-sm">Inbox AI</span>
+</a>
+<!-- Priority -->
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="text-sm">Priority</span>
+</a>
+<!-- Categories -->
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="text-sm">Categories</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="text-sm">Analytics</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300 rounded-r-full mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+</nav>
+<div class="px-8 mt-auto flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Close up of professional creative man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmkUT1j66IzAgQ4h7a7tfu3wLK7ZMTCSqIKXIFld0hBg2f4XxQXgjpjxK48JADYBr-nkboNajqKaaUwuCv2LBgvgRt4rRX8kLvdBP2U7ttyRZ8vCCEZsvL-AJdZJr9-fV4teLrS--pLtxaixEMqiuh6cTfkSq752dBKRDkrN8RVAJINcU3xY-Y6qns7VqIf0k_bb-8DIn5AJRMOt6KI79PuS75GcDs8mJU3JJ4PIcnhs_00CDXLlmVRYQPjEaNCsSr3Ohjb9MKSDU"/>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Alex Rivera</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Pro Member</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Authority: JSON) -->
+<header class="fixed top-0 right-0 left-64 h-20 bg-[#0b1326]/60 backdrop-blur-xl flex items-center justify-between px-12 z-40 shadow-2xl shadow-black/20 font-manrope text-sm font-medium">
+<div class="flex items-center gap-8">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-6 w-64 text-on-surface focus:ring-1 focus:ring-primary transition-all" placeholder="Neural Search..." type="text"/>
+</div>
+<div class="flex gap-6">
+<span class="text-violet-300 border-b-2 border-violet-400 pb-1 cursor-default">Total: 124</span>
+<span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Important: 12</span>
+<span class="text-slate-400 hover:text-white transition-colors cursor-pointer">Pending: 5</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="bg-surface-container-highest/50 px-5 py-2 rounded-full hover:text-white transition-colors flex items-center gap-2 hover:glow-primary-20">
+                ✨ Summarize My Day
+            </button>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-slate-400 hover:text-white" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-slate-400 hover:text-white" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="ml-64 pt-24 min-h-screen grid grid-cols-12 gap-0 overflow-hidden">
+<!-- Col 1: Categories (Bento Navigation) -->
+<section class="col-span-2 bg-surface-dim p-6 border-r border-white/5">
+<h3 class="font-headline font-bold text-lg mb-6 tracking-tight">Intelligence Hub</h3>
+<div class="space-y-2">
+<button class="w-full text-left px-4 py-3 rounded-xl bg-surface-container-high text-primary font-semibold flex items-center justify-between group">
+<span class="flex items-center gap-3"><span class="material-symbols-outlined text-sm">all_inbox</span> All</span>
+<span class="text-xs bg-primary/20 px-2 py-0.5 rounded-full">124</span>
+</button>
+<button class="w-full text-left px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-sm text-error">priority_high</span> Important
+                </button>
+<button class="w-full text-left px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-sm text-secondary">work</span> Work
+                </button>
+<button class="w-full text-left px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-sm text-tertiary">account_balance_wallet</span> Finance
+                </button>
+<button class="w-full text-left px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-sm text-primary">campaign</span> Promotion
+                </button>
+<button class="w-full text-left px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-sm text-outline">report</span> Spam
+                </button>
+</div>
+<div class="mt-12 bg-surface-container-low rounded-lg p-4">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Cloud Usage</p>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary-container w-[65%]"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2">12.4 GB / 20 GB</p>
+</div>
+</section>
+<!-- Col 2: Email List (Editorial Feed) -->
+<section class="col-span-6 bg-surface p-8 overflow-y-auto max-h-[calc(100vh-6rem)]">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline font-extrabold text-3xl tracking-tighter">Active Stream</h2>
+<div class="flex gap-2">
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">filter_list</span></button>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">sort</span></button>
+</div>
+</div>
+<div class="space-y-4">
+<!-- Email Item 1 (Selected/Active) -->
+<div class="p-6 rounded-lg bg-surface-container-high border-l-4 border-primary shadow-xl shadow-black/10 cursor-pointer transition-all">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Portrait of a tech executive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALQmP7V6FBlYgfUuXnSBqYhf2KNOYSygTeWpvBBzihaD3hysfalwGqIsh_u-F_170PX9InQPgrRzv5YPPPRvFawzyqfye2FaEQ6rECi0lUKucDFod7nuIMs27Dz_9EwG5FpA1qHDo5KUHyRMXbsSHi_i_iYE67Sacj8Tu_-opgm7R9_iLNofplfzZrnLOasduY_C_kRyAwG_qFiJSdxq8-wP_dhwascUZKotohN1nFQ0DCoDB8HentIXhcq7AI7MBPV8oFJbSz5O0"/>
+<span class="font-bold text-white">Solaris Systems</span>
+</div>
+<span class="text-xs text-slate-500">10:42 AM</span>
+</div>
+<h4 class="font-semibold text-lg text-on-surface mb-2">Q4 Infrastructure Overhaul: Budget &amp; Timeline</h4>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container/30 text-error text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Urgent
+                        </span>
+<span class="text-xs text-on-surface-variant">Priority Score: <span class="text-primary font-bold">9.8</span></span>
+</div>
+</div>
+<!-- Email Item 2 -->
+<div class="p-6 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-xs font-bold">NP</div>
+<span class="font-bold text-white">Nova Prime</span>
+</div>
+<span class="text-xs text-slate-500">09:15 AM</span>
+</div>
+<h4 class="font-medium text-lg text-on-surface-variant group-hover:text-on-surface transition-colors">Weekly Synchronization: Team Velocity Report</h4>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest text-slate-400 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Standard
+                        </span>
+<span class="text-xs text-on-surface-variant">Priority Score: <span class="text-on-surface font-bold">6.2</span></span>
+</div>
+</div>
+<!-- Email Item 3 -->
+<div class="p-6 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Headshot of professional designer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJZPrXTPSUd2Tcg0DdHzGhgANdwmL9v_ytvNGLBCfjQQCau0GaQJHZ8zzGbEi-yC0a3gM1NRiUmz4DBdlrk5OHsKYVPaFEGBRPivVQBaapS0gvvaWsb7d7z8j0GuhfxFe-Wkogu0fekjsbC0P-R1uMo4JttLO_zaD139jAvBpRdjcm8piOOmgd6fl75Fj7AN8Cj9ixj3Byr3FfKld3plHw5VnYXyLFeuhoemxzpUH1kGWanHK7Rn0LZb-266UEStUsACgE6ZlvKxo"/>
+<span class="font-bold text-white">Elena Vance</span>
+</div>
+<span class="text-xs text-slate-500">Yesterday</span>
+</div>
+<h4 class="font-medium text-lg text-on-surface-variant group-hover:text-on-surface transition-colors">Visual Design Critique: Zero-G Interface v2</h4>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/20 text-tertiary text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> High
+                        </span>
+<span class="text-xs text-on-surface-variant">Priority Score: <span class="text-on-surface font-bold">8.4</span></span>
+</div>
+</div>
+<!-- Email Item 4 -->
+<div class="p-6 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer group opacity-60">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500">shopping_bag</span>
+<span class="font-bold text-white">Digital Ocean</span>
+</div>
+<span class="text-xs text-slate-500">Yesterday</span>
+</div>
+<h4 class="font-medium text-lg text-on-surface-variant">Monthly Billing Statement - Oct 2023</h4>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest text-slate-400 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span> Log
+                        </span>
+<span class="text-xs text-on-surface-variant">Priority Score: <span class="text-on-surface font-bold">1.5</span></span>
+</div>
+</div>
+<!-- Email Item 5 -->
+<div class="p-6 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-xs font-bold">HQ</div>
+<span class="font-bold text-white">Stellar Headhunters</span>
+</div>
+<span class="text-xs text-slate-500">Oct 24</span>
+</div>
+<h4 class="font-medium text-lg text-on-surface-variant">Exclusive Opportunity: Senior AI Architect</h4>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest text-slate-400 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Standard
+                        </span>
+<span class="text-xs text-on-surface-variant">Priority Score: <span class="text-on-surface font-bold">4.0</span></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Col 3: AI Summary Panel (Intelligence Layer) -->
+<section class="col-span-4 bg-surface-container-low p-8 border-l border-white/5 overflow-y-auto max-h-[calc(100vh-6rem)]">
+<div class="flex items-center gap-3 mb-8">
+<div class="p-2 bg-primary/20 rounded-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h3 class="font-headline font-bold text-xl tracking-tight">AI Intelligent Summary</h3>
+</div>
+<div class="space-y-8">
+<!-- Short Paragraph Summary -->
+<div class="bg-surface-container p-6 rounded-lg border border-primary/10">
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        Solaris Systems is requesting a final approval on the Q4 infrastructure budget by <span class="text-primary font-bold">Friday, 5 PM</span>. The current proposal indicates a 12% increase from Q3 due to new neural processing units. Delaying this decision will push the rollout into Q1 of next year.
+                    </p>
+</div>
+<!-- Key Points -->
+<div>
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Key Points</h4>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 text-sm text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5"></span>
+                            Budget increase is primarily for hardware scalability.
+                        </li>
+<li class="flex items-start gap-3 text-sm text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5"></span>
+                            Projected ROI is estimated at 24% over 6 months.
+                        </li>
+<li class="flex items-start gap-3 text-sm text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5"></span>
+                            Timeline risk identified if signature is delayed past Oct 31st.
+                        </li>
+</ul>
+</div>
+<!-- Action Required Checklist -->
+<div>
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Action Required</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded-lg border border-transparent hover:border-primary/20 cursor-pointer">
+<input class="w-4 h-4 rounded bg-surface-container-high border-none text-primary focus:ring-primary/50" type="checkbox"/>
+<span class="text-sm">Review Budget Spreadsheet</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded-lg border border-transparent hover:border-primary/20 cursor-pointer">
+<input class="w-4 h-4 rounded bg-surface-container-high border-none text-primary focus:ring-primary/50" type="checkbox"/>
+<span class="text-sm">Confirm Timeline with Engineering</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded-lg border border-transparent hover:border-primary/20 cursor-pointer">
+<input class="w-4 h-4 rounded bg-surface-container-high border-none text-primary focus:ring-primary/50" type="checkbox"/>
+<span class="text-sm">Sign Digital Procurement Form</span>
+</label>
+</div>
+</div>
+<!-- Suggested Reply -->
+<div>
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Suggested Reply</h4>
+<div class="relative">
+<textarea class="w-full h-32 bg-surface-container-lowest border-none rounded-xl p-4 text-sm text-on-surface leading-relaxed focus:ring-1 focus:ring-primary/40" placeholder="Type or edit reply...">Dear Solaris Team, thank you for the breakdown. I've reviewed the 12% increase for NPUs and it aligns with our scaling goals. Please proceed with the procurement form, and I will sign it before the Friday deadline.</textarea>
+<div class="absolute bottom-3 right-3 flex gap-2">
+<button class="p-2 bg-surface-container-high rounded-lg text-slate-400 hover:text-white transition-colors"><span class="material-symbols-outlined text-sm">content_copy</span></button>
+<button class="p-2 bg-surface-container-high rounded-lg text-slate-400 hover:text-white transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<button class="w-full py-4 bg-gradient-to-r from-primary to-secondary-container text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">send</span>
+                    Send Neural Reply
+                </button>
+</div>
+</section>
+</main>
+<!-- Floating Gravity Hub (System Component) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 glass-panel px-6 py-4 rounded-xl flex items-center gap-8 z-50 shadow-2xl shadow-black/40 border border-white/5">
+<div class="flex items-center gap-4 border-r border-white/10 pr-8">
+<button class="p-2 rounded-full hover:bg-white/10 text-on-surface-variant transition-colors"><span class="material-symbols-outlined">psychology</span></button>
+<button class="p-2 rounded-full hover:bg-white/10 text-on-surface-variant transition-colors"><span class="material-symbols-outlined">auto_graph</span></button>
+<button class="p-2 rounded-full hover:bg-white/10 text-on-surface-variant transition-colors"><span class="material-symbols-outlined">draw</span></button>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<p class="text-xs font-bold text-primary tracking-widest uppercase">AI Engine Online</p>
+</div>
+</div>
+</body></html>

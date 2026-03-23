@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#3f2300",
+              "on-tertiary": "#482900",
+              "primary-fixed-dim": "#d0bcff",
+              "secondary-fixed": "#d8e2ff",
+              "on-primary-container": "#340080",
+              "primary": "#d0bcff",
+              "surface-container-lowest": "#060e20",
+              "surface-container-high": "#222a3d",
+              "on-secondary-fixed-variant": "#004395",
+              "primary-fixed": "#e9ddff",
+              "secondary-fixed-dim": "#adc6ff",
+              "error-container": "#93000a",
+              "tertiary": "#ffb869",
+              "on-primary": "#3c0091",
+              "surface-container": "#171f33",
+              "on-tertiary-fixed": "#2c1700",
+              "tertiary-fixed": "#ffdcbb",
+              "on-tertiary-fixed-variant": "#673d00",
+              "surface-container-low": "#131b2e",
+              "on-secondary-fixed": "#001a42",
+              "on-error": "#690005",
+              "on-surface-variant": "#cbc3d7",
+              "secondary-container": "#0566d9",
+              "tertiary-fixed-dim": "#ffb869",
+              "on-background": "#dae2fd",
+              "inverse-on-surface": "#283044",
+              "surface-container-highest": "#2d3449",
+              "surface": "#0b1326",
+              "inverse-primary": "#6d3bd7",
+              "outline-variant": "#494454",
+              "inverse-surface": "#dae2fd",
+              "background": "#0b1326",
+              "primary-container": "#a078ff",
+              "surface-bright": "#31394d",
+              "on-secondary-container": "#e6ecff",
+              "tertiary-container": "#ca801e",
+              "outline": "#958ea0",
+              "on-surface": "#dae2fd",
+              "error": "#ffb4ab",
+              "surface-dim": "#0b1326",
+              "on-primary-fixed-variant": "#5516be",
+              "on-primary-fixed": "#23005c",
+              "secondary": "#adc6ff",
+              "surface-tint": "#d0bcff",
+              "surface-variant": "#2d3449",
+              "on-secondary": "#002e6a",
+              "on-error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift-bg-surface-container-low {
+            background-color: #131b2e;
+        }
+        .glow-primary-20:hover {
+            box-shadow: 0 0 20px rgba(208, 188, 255, 0.2);
+        }
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-[#0b1326] bg-gradient-to-r from-[#0b1326] to-[#0f172a] flex flex-col py-8 font-manrope tracking-tight z-50">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-bold tracking-tighter text-white">Zero-G Mail</h1>
+<p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Weightless Intel</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center px-6 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="auto_awesome">auto_awesome</span>
+<span>Inbox AI</span>
+</a>
+<a class="flex items-center px-6 py-3 text-violet-400 font-bold bg-violet-400/10 rounded-r-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>Priority</span>
+</a>
+<a class="flex items-center px-6 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="folder_open">folder_open</span>
+<span>Categories</span>
+</a>
+<a class="flex items-center px-6 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="insights">insights</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center px-6 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-gradient-to-r from-primary to-secondary-container text-on-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:scale-95 active:scale-90 transition-transform duration-200 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                Compose
+            </button>
+<div class="mt-8 flex items-center gap-3 bg-surface-container-high p-3 rounded-lg">
+<img alt="User profile" class="w-8 h-8 rounded-full bg-surface-bright" data-alt="Minimalist avatar of a male executive profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBynm33ayVbIuFK_ADKxjAOBjuQgikNAunDTgzbbUZvJUN0Yxu25W_AYnrPzEJda6Nykv2VyVRXfqBoe29Z4ANZVfLil-aNsWiIxMzyCBAlsMX44gUczaj7q9uSfeg6NpDLtpLnEhr5OcUpjdOzPpMdKduUSoUcwoiRi0gB5qnrNLRV8GCpFERke4ufy5bQF3vPs8p030uy3PdqpEVNGU7s2YaMhV95Xpzf-RdBU1cohdT_UnCl-xHfwdeIhqTeNfexK-VHu05F7OQ"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Alex Vance</p>
+<p class="text-[10px] text-outline truncate">Pro Tier Intelligence</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-20 bg-[#0b1326]/60 backdrop-blur-xl flex items-center justify-between px-12 w-full z-40 shadow-2xl shadow-black/20 font-manrope text-sm font-medium">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-outline" placeholder="Search intel..." type="text"/>
+</div>
+<div class="flex items-center gap-6 text-slate-400">
+<span class="text-violet-300 border-b-2 border-violet-400 py-1">Total: 124</span>
+<span class="hover:text-white transition-colors cursor-pointer">Important: 12</span>
+<span class="hover:text-white transition-colors cursor-pointer">Pending: 5</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-violet-400 hover:glow-primary-20 transition-all px-4 py-2 rounded-full border border-violet-400/20">
+                ✨ Summarize My Day
+            </button>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-28 pb-12 px-12">
+<div class="max-w-5xl mx-auto">
+<!-- Header Section -->
+<div class="mb-12 flex items-end justify-between">
+<div>
+<h2 class="text-5xl font-headline font-extrabold tracking-tight mb-2">Priority Hub</h2>
+<p class="text-on-surface-variant max-w-md">Your weightless focus list. AI-filtered tasks that demand immediate atmospheric correction.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-tertiary-container/20 text-tertiary px-6 py-3 rounded-lg border border-tertiary/10 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+<div class="text-left">
+<p class="text-[10px] uppercase tracking-widest font-bold opacity-70 leading-none mb-1">Focus Mode</p>
+<p class="text-sm font-bold leading-none">High Velocity</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Task List Area -->
+<div class="space-y-6">
+<h3 class="text-xs font-bold uppercase tracking-[0.2em] text-outline mb-4">Things to do now</h3>
+<!-- Task Card 1 -->
+<div class="group relative bg-surface-container-high p-8 rounded-lg flex items-center gap-8 transition-all duration-300 hover:bg-surface-bright hover:shadow-2xl hover:shadow-primary/5">
+<div class="flex-shrink-0">
+<input class="w-8 h-8 rounded-full border-2 border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-background transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest bg-error-container text-on-error-container px-2 py-0.5 rounded">Critical</span>
+<span class="text-xs text-outline">From: Sarah Chen (Engineering)</span>
+</div>
+<h4 class="text-xl font-headline font-bold text-white mb-1">Q4 Cloud Infrastructure Deployment</h4>
+<p class="text-on-surface-variant text-sm line-clamp-1">Needs immediate approval on the security architecture before the 2PM window.</p>
+</div>
+<div class="flex flex-col items-end gap-4">
+<div class="text-right">
+<p class="text-[10px] text-outline uppercase font-bold tracking-widest mb-1">Priority Score</p>
+<p class="text-3xl font-headline font-extrabold text-primary">98<span class="text-xs opacity-50 ml-0.5">/100</span></p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 bg-surface-container-highest px-4 py-2 rounded-full text-xs font-bold text-on-surface transition-all active:scale-95 border border-outline-variant/30">
+                            Mark as done
+                        </button>
+</div>
+</div>
+<!-- Task Card 2 -->
+<div class="group relative bg-surface-container p-8 rounded-lg flex items-center gap-8 transition-all duration-300 hover:bg-surface-bright hover:shadow-2xl hover:shadow-primary/5 border-l-4 border-tertiary">
+<div class="flex-shrink-0">
+<input class="w-8 h-8 rounded-full border-2 border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-background transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest bg-tertiary/20 text-tertiary px-2 py-0.5 rounded">Growth</span>
+<span class="text-xs text-outline">From: Marketing Automations</span>
+</div>
+<h4 class="text-xl font-headline font-bold text-white mb-1">Review Brand Refresh Assets</h4>
+<p class="text-on-surface-variant text-sm line-clamp-1">Final sign-off on the "Weightless" campaign visual identity guidelines.</p>
+</div>
+<div class="flex flex-col items-end gap-4">
+<div class="text-right">
+<p class="text-[10px] text-outline uppercase font-bold tracking-widest mb-1">Priority Score</p>
+<p class="text-3xl font-headline font-extrabold text-tertiary">84<span class="text-xs opacity-50 ml-0.5">/100</span></p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 bg-surface-container-highest px-4 py-2 rounded-full text-xs font-bold text-on-surface transition-all active:scale-95 border border-outline-variant/30">
+                            Mark as done
+                        </button>
+</div>
+</div>
+<!-- Task Card 3 -->
+<div class="group relative bg-surface-container p-8 rounded-lg flex items-center gap-8 transition-all duration-300 hover:bg-surface-bright hover:shadow-2xl hover:shadow-primary/5">
+<div class="flex-shrink-0">
+<input class="w-8 h-8 rounded-full border-2 border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-background transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest bg-secondary-container/20 text-secondary px-2 py-0.5 rounded">External</span>
+<span class="text-xs text-outline">From: Johnathan Smith (Investor)</span>
+</div>
+<h4 class="text-xl font-headline font-bold text-white mb-1">Schedule Series B Briefing</h4>
+<p class="text-on-surface-variant text-sm line-clamp-1">Requesting a 15-minute sync on the latest churn metrics before board meeting.</p>
+</div>
+<div class="flex flex-col items-end gap-4">
+<div class="text-right">
+<p class="text-[10px] text-outline uppercase font-bold tracking-widest mb-1">Priority Score</p>
+<p class="text-3xl font-headline font-extrabold text-secondary">72<span class="text-xs opacity-50 ml-0.5">/100</span></p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 bg-surface-container-highest px-4 py-2 rounded-full text-xs font-bold text-on-surface transition-all active:scale-95 border border-outline-variant/30">
+                            Mark as done
+                        </button>
+</div>
+</div>
+<!-- Task Card 4 -->
+<div class="group relative bg-surface-container-low p-8 rounded-lg flex items-center gap-8 transition-all duration-300 hover:bg-surface-bright hover:shadow-2xl hover:shadow-primary/5">
+<div class="flex-shrink-0">
+<input class="w-8 h-8 rounded-full border-2 border-outline bg-transparent text-primary focus:ring-primary focus:ring-offset-background transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[10px] font-bold uppercase tracking-widest bg-surface-container-highest text-outline px-2 py-0.5 rounded">Internal</span>
+<span class="text-xs text-outline">From: HR Operations</span>
+</div>
+<h4 class="text-xl font-headline font-bold text-white mb-1">Annual Security Training</h4>
+<p class="text-on-surface-variant text-sm line-clamp-1">Compliance window closes in 48 hours. Estimated time: 10 mins.</p>
+</div>
+<div class="flex flex-col items-end gap-4">
+<div class="text-right">
+<p class="text-[10px] text-outline uppercase font-bold tracking-widest mb-1">Priority Score</p>
+<p class="text-3xl font-headline font-extrabold text-outline">45<span class="text-xs opacity-50 ml-0.5">/100</span></p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 bg-surface-container-highest px-4 py-2 rounded-full text-xs font-bold text-on-surface transition-all active:scale-95 border border-outline-variant/30">
+                            Mark as done
+                        </button>
+</div>
+</div>
+</div>
+<!-- Floating Gravity Hub -->
+<div class="fixed bottom-12 left-1/2 -translate-x-1/2 ml-32 z-50">
+<div class="bg-surface-container/60 backdrop-blur-2xl px-8 py-4 rounded-xl shadow-2xl border border-white/5 flex items-center gap-8">
+<div class="flex items-center gap-4 border-r border-white/10 pr-8">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+<p class="text-xs font-bold tracking-tight">AI suggesting 2 more high-impact tasks</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform">Show More</button>
+<button class="bg-surface-container-highest text-on-surface px-6 py-2 rounded-full text-sm font-bold hover:bg-surface-bright">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Background Decoration for Anti-Gravity Feel -->
+<div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-secondary-container/5 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+</body></html>

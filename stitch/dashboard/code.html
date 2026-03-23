@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zero-G Intelligence | แดชบอร์ด AI ต่อต้านแรงโน้มถ่วง</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Noto+Sans+Thai:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#3f2300",
+              "on-tertiary": "#482900",
+              "primary-fixed-dim": "#d0bcff",
+              "secondary-fixed": "#d8e2ff",
+              "on-primary-container": "#340080",
+              "primary": "#d0bcff",
+              "surface-container-lowest": "#060e20",
+              "surface-container-high": "#222a3d",
+              "on-secondary-fixed-variant": "#004395",
+              "primary-fixed": "#e9ddff",
+              "secondary-fixed-dim": "#adc6ff",
+              "error-container": "#93000a",
+              "tertiary": "#ffb869",
+              "on-primary": "#3c0091",
+              "surface-container": "#171f33",
+              "on-tertiary-fixed": "#2c1700",
+              "tertiary-fixed": "#ffdcbb",
+              "on-tertiary-fixed-variant": "#673d00",
+              "surface-container-low": "#131b2e",
+              "on-secondary-fixed": "#001a42",
+              "on-error": "#690005",
+              "on-surface-variant": "#cbc3d7",
+              "secondary-container": "#0566d9",
+              "tertiary-fixed-dim": "#ffb869",
+              "on-background": "#dae2fd",
+              "inverse-on-surface": "#283044",
+              "surface-container-highest": "#2d3449",
+              "surface": "#0b1326",
+              "inverse-primary": "#6d3bd7",
+              "outline-variant": "#494454",
+              "inverse-surface": "#dae2fd",
+              "background": "#0b1326",
+              "primary-container": "#a078ff",
+              "surface-bright": "#31394d",
+              "on-secondary-container": "#e6ecff",
+              "tertiary-container": "#ca801e",
+              "outline": "#958ea0",
+              "on-surface": "#dae2fd",
+              "error": "#ffb4ab",
+              "surface-dim": "#0b1326",
+              "on-primary-fixed-variant": "#5516be",
+              "on-primary-fixed": "#23005c",
+              "secondary": "#adc6ff",
+              "surface-tint": "#d0bcff",
+              "surface-variant": "#2d3449",
+              "on-secondary": "#002e6a",
+              "on-error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Manrope", "Noto Sans Thai"],
+              "body": ["Inter", "Noto Sans Thai"],
+              "label": ["Inter", "Noto Sans Thai"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(23, 31, 51, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #d0bcff 0%, #0566d9 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-[#0b1326] flex flex-col py-8 z-50 font-headline tracking-tight">
+<div class="px-8 mb-12">
+<h1 class="text-2xl font-bold tracking-tighter text-white">Zero-G Mail</h1>
+<p class="text-xs text-slate-400 mt-1 uppercase tracking-widest">Weightless Intel</p>
+</div>
+<nav class="flex-1 space-y-2 px-4">
+<a class="flex items-center gap-4 px-4 py-3 text-violet-400 font-bold bg-violet-400/10 rounded-r-full scale-95 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>แดชบอร์ด</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span>อินบ็อกซ์ AI</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span>ลำดับความสำคัญ</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span>หมวดหมู่</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span>การวิเคราะห์</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>ตั้งค่า</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full premium-gradient text-on-primary font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-xl shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+            เขียนเมล
+        </button>
+<div class="mt-8 flex items-center gap-3 px-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/30">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Portrait of a modern professional user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFKiL9Bl1fyyNLkeDz-JkkyfT42HTwADdE8MWf6I8GLVpW0jeVv0zPKuBlnTlQyHk5eiHU7fEQqB5-Jm0IeMwDQx-828PbM2AfMLSx5Eb7mv40xPfJKr6ArhBe2btxnGi4F_wrqj429MXDTf1pAl4XpiaCANWbx9CjB5Ch-Dw70aqF48naAS00-KT7QcqhziE75szxxkXGn2bz2ZWy2GnJjBq5HGLu8FO8JIbsJzaMuNvaMOO6Qn7OhXOTHCFsgzdV6100Ykz3-U8"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-white">Alex Chen</span>
+<span class="text-[10px] text-slate-500">Premium Plan</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen relative pb-24">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-20 bg-[#0b1326]/60 backdrop-blur-xl flex items-center justify-between px-12 z-40 shadow-2xl shadow-black/20 font-headline text-sm font-medium">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-6">
+<span class="text-slate-400 hover:text-white transition-colors cursor-default">ทั้งหมด: 124</span>
+<span class="text-violet-300 border-b-2 border-violet-400 py-2">สำคัญ: 12</span>
+<span class="text-slate-400 hover:text-white transition-colors cursor-default">รอกระดำเนินการ: 5</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="premium-gradient px-6 py-2 rounded-full text-on-primary font-bold hover:shadow-[0_0_20px_rgba(208,188,255,0.4)] transition-all">
+                ✨ สรุปภาพรวมวันนี้
+            </button>
+<div class="flex items-center gap-4 text-slate-400">
+<span class="material-symbols-outlined cursor-pointer hover:text-white" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-white" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="pt-32 px-12 max-w-7xl mx-auto space-y-12">
+<!-- Hero: Today Digest -->
+<section>
+<div class="glass-panel p-10 rounded-lg relative overflow-hidden group">
+<!-- Background Accent -->
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 blur-[100px] rounded-full group-hover:bg-primary/20 transition-all duration-700"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
+<div class="lg:col-span-2 space-y-6">
+<div class="flex items-center gap-3">
+<span class="bg-tertiary-container/30 text-tertiary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
+                                ข้อมูลจาก AI
+                            </span>
+<span class="text-slate-500 text-sm">สร้างเมื่อ 2 นาทีที่แล้ว</span>
+</div>
+<h2 class="text-4xl font-headline font-extrabold text-white tracking-tight leading-tight">
+                            เช้านี้ของคุณดูเรียบร้อยดี แต่มี <span class="text-primary italic">'อัปเดตสัญญา'</span> ด่วน 3 ฉบับที่ต้องตรวจสอบภายในบ่าย 2 โมง
+                        </h2>
+<ul class="space-y-4 pt-4">
+<li class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mt-1">
+<span class="material-symbols-outlined text-xs text-primary" data-icon="check_circle">check_circle</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed">Marketing campaign budget was approved by Sarah. No action needed.</p>
+</li>
+<li class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-secondary-container/20 flex items-center justify-center mt-1">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="priority_high">priority_high</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed">Investor meeting moved to Friday. Review the updated pitch deck attachment.</p>
+</li>
+<li class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-tertiary-container/20 flex items-center justify-center mt-1">
+<span class="material-symbols-outlined text-xs text-tertiary" data-icon="lightbulb">lightbulb</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed">Trend Alert: 5 emails discussing "Hyper-automation" in the last hour.</p>
+</li>
+</ul>
+<div class="flex items-center gap-4 pt-6">
+<button class="flex items-center gap-2 px-8 py-3 bg-surface-container-highest rounded-full font-bold hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+                                ฟังเสียงสรุป
+                            </button>
+<button class="flex items-center gap-2 px-8 py-3 border border-outline-variant/30 rounded-full font-bold hover:bg-white/5 transition-colors">
+                                ดูรายละเอียด
+                            </button>
+</div>
+</div>
+<div class="hidden lg:block">
+<div class="aspect-square bg-surface-container-low rounded-lg p-6 border border-outline-variant/20 flex flex-col justify-between">
+<div class="space-y-2">
+<p class="text-xs text-slate-500 uppercase tracking-widest font-bold">เป้าหมายวันนี้</p>
+<p class="text-2xl font-bold">งานที่ต้องใช้สมาธิ</p>
+</div>
+<div class="space-y-4">
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full w-2/3 premium-gradient"></div>
+</div>
+<div class="flex justify-between text-xs font-medium text-slate-400">
+<span>4.5h จัดสรรแล้ว</span>
+<span>68% ประสิทธิภาพ</span>
+</div>
+</div>
+<div class="bg-primary/5 rounded-lg p-4 border border-primary/10">
+<p class="text-[10px] text-primary font-bold uppercase mb-1">รายการถัดไป</p>
+<p class="text-sm font-semibold">Project Zero-G Sync</p>
+<p class="text-xs text-slate-500">11:00 AM — 12:00 PM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Priority Emails Section -->
+<section class="space-y-8 pb-12">
+<div class="flex items-end justify-between">
+<div class="space-y-1">
+<h3 class="text-2xl font-headline font-bold text-white">อีเมลสำคัญ</h3>
+<p class="text-sm text-slate-500">คัดสรรโดย Zero-G Intel ตามรูปแบบการทำงานของคุณ</p>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-2 hover:underline">
+                    จัดการกฎ
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Email 1 -->
+<div class="group flex items-center gap-6 p-6 rounded-lg bg-surface-container-high hover:bg-surface-bright transition-all cursor-pointer border-l-4 border-error">
+<div class="flex flex-col items-center justify-center min-w-[60px]">
+<span class="text-2xl font-extrabold text-error">9.8</span>
+<span class="text-[10px] text-slate-500 uppercase font-bold">Score</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden shrink-0">
+<img alt="Sender avatar" class="w-full h-full object-cover" data-alt="Professional female executive portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzpW-skkn6BQZRpYnRZ_IjktGcYxb4Joi0xDcM0Eu5s_SQh48ByGINls5K_esy2n352Kj7G6VFFJLv2zpvXL57XAm3teGsTGhFUq2OHxQZ8jgvbUWalMSKTwOH3tdwpO0VFwaCNEjnTXtBBN-pNtW_xIAOOV9D5187-irDiEtAJ9SvP4gGnb8N-Z6fX63GTtoTxZ9o5ZnTFPdc8FmcL7lDthvhH8vS4toDALvkxgiNaJe4CMWbZz-nxylvVEajOW_y-vehtMj0DN8"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-bold text-white truncate">Elena Rodriguez</h4>
+<span class="text-[10px] bg-error-container/20 text-error px-2 py-0.5 rounded uppercase font-bold">ด่วนมาก</span>
+</div>
+<p class="text-on-surface-variant text-sm truncate">RE: Final Q3 Contract Terms - Missing Signature on Appendix B</p>
+</div>
+<div class="flex items-center gap-6 shrink-0">
+<span class="text-xs text-slate-500 font-medium">14:02 PM</span>
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-primary/20 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-error/20 hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Email 2 -->
+<div class="group flex items-center gap-6 p-6 rounded-lg bg-surface-container-low hover:bg-surface-bright transition-all cursor-pointer border-l-4 border-primary">
+<div class="flex flex-col items-center justify-center min-w-[60px]">
+<span class="text-2xl font-extrabold text-primary">8.4</span>
+<span class="text-[10px] text-slate-500 uppercase font-bold">Score</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden shrink-0">
+<img alt="Sender avatar" class="w-full h-full object-cover" data-alt="Creative professional male portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnlB6EHsPwv8YNhRsiEITL0rwbCv8TRX51A_D7gcC2UOewCT6sXpsZTK-W7R7Mofy5zO9sMGUWSsuIZId2KNiMvfbG04_Hmcbo0mOfiWnAYor2rTIwrkn02XjpPTe72WrCLqjvgsVTzmyk2WooALzVDDAPGVEtDJ8R58PkgkYs79FNqQoN0Dl6Hiz0381_90nfzsD-dq5ncEKDlQw-KoVhDQ9TQn6ASlhAxCqBMe5GgfkdMVA4bgL9nKrK3fGww9VkGTFlpcy_YQg"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-bold text-white truncate">Marcus Thorne</h4>
+<span class="text-[10px] bg-primary/20 text-primary px-2 py-0.5 rounded uppercase font-bold">กลยุทธ์</span>
+</div>
+<p class="text-on-surface-variant text-sm truncate">Thoughts on the new Brand Direction? Attached the deck for feedback.</p>
+</div>
+<div class="flex items-center gap-6 shrink-0">
+<span class="text-xs text-slate-500 font-medium">12:15 PM</span>
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-primary/20 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-error/20 hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Email 3 -->
+<div class="group flex items-center gap-6 p-6 rounded-lg bg-surface-container-low hover:bg-surface-bright transition-all cursor-pointer border-l-4 border-secondary">
+<div class="flex flex-col items-center justify-center min-w-[60px]">
+<span class="text-2xl font-extrabold text-secondary">7.2</span>
+<span class="text-[10px] text-slate-500 uppercase font-bold">Score</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden shrink-0 flex items-center justify-center">
+<span class="text-lg font-bold text-slate-400">GS</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-bold text-white truncate">Global Systems Ltd.</h4>
+<span class="text-[10px] bg-secondary/20 text-secondary px-2 py-0.5 rounded uppercase font-bold">โครงสร้างพื้นฐาน</span>
+</div>
+<p class="text-on-surface-variant text-sm truncate">Weekly status report: All systems operational. Security audit scheduled.</p>
+</div>
+<div class="flex items-center gap-6 shrink-0">
+<span class="text-xs text-slate-500 font-medium">09:44 AM</span>
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-primary/20 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-error/20 hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Floating AI Hub -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 px-8 py-4 glass-panel rounded-xl shadow-2xl z-50">
+<button class="flex items-center gap-2 text-primary font-bold px-4 py-2 hover:bg-primary/10 rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+            สั่งการด้วยเสียง
+        </button>
+<div class="w-[1px] h-6 bg-outline-variant/30 mx-2"></div>
+<button class="flex items-center gap-2 text-on-surface-variant font-bold px-4 py-2 hover:bg-white/5 rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+            ค้นหาอัจฉริยะ
+        </button>
+<div class="w-[1px] h-6 bg-outline-variant/30 mx-2"></div>
+<button class="flex items-center gap-2 text-on-surface-variant font-bold px-4 py-2 hover:bg-white/5 rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="auto_fix_high">auto_fix_high</span>
+            จัดระเบียบกล่องจดหมาย
+        </button>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,218 @@
+# Anti-Gravity Project Rules
+# Thai AI Email Assistant — Zero-G Interface Design System
+
+## 1. ชื่อโปรเจคและแนวคิด
+- ชื่อแอป: **Zero-G Mail** (Anti-Gravity Email Assistant)
+- แนวคิด: "Weightless Intelligence" — อีเมลที่รู้สึกเบาและชาญฉลาด
+- ภาษา: รองรับภาษาไทยเป็นหลัก (Thai-first)
+- Vision: "ทำให้ผู้ใช้ไม่ต้องเปิดอีเมลอีกต่อไป"
+
+---
+
+## 2. Tech Stack
+
+### Frontend
+- **Framework**: React (Vite หรือ Next.js)
+- **Styling**: TailwindCSS v3 พร้อม custom config (ตาม Stitch design tokens)
+- **Icons**: Google Material Symbols Outlined
+- **Fonts**:
+  - Headline/Display: `Manrope` (+ `Noto Sans Thai` สำหรับภาษาไทย)
+  - Body/Labels: `Inter` (+ `Noto Sans Thai` สำหรับภาษาไทย)
+
+### Backend
+- **Runtime**: Node.js หรือ Python
+- **AI**: LLM (สรุปและจัดหมวดอีเมลภาษาไทย)
+- **Email Integration**: Gmail API / Microsoft Graph API (Outlook)
+
+---
+
+## 3. Design Token Rules (Zero-G Design System)
+
+### Color Palette — ห้ามเปลี่ยนค่าเหล่านี้
+```
+primary:                  #d0bcff
+secondary:                #adc6ff
+tertiary:                 #ffb869
+secondary-container:      #0566d9
+surface:                  #0b1326
+background:               #0b1326
+surface-dim:              #0b1326
+surface-container-lowest: #060e20
+surface-container-low:    #131b2e
+surface-container:        #171f33
+surface-container-high:   #222a3d
+surface-container-highest:#2d3449
+surface-bright:           #31394d
+on-surface:               #dae2fd
+on-surface-variant:       #cbc3d7
+on-primary:               #3c0091
+error:                    #ffb4ab
+outline-variant:          #494454
+outline:                  #958ea0
+```
+
+### Typography Scale
+- Display/Headline: `font-headline` → Manrope / Noto Sans Thai
+- Body/Label: `font-body` หรือ `font-label` → Inter / Noto Sans Thai
+- ใช้ contrast ขนาดใหญ่: `display-lg` (3.5rem) vs `body-md` (0.875rem)
+
+### Border Radius — ห้ามใช้ค่าน้อยกว่า 1rem
+```
+DEFAULT: 1rem   (16px)  ← minimum
+lg:      2rem   (32px)
+xl:      3rem   (48px)
+full:    9999px
+```
+
+---
+
+## 4. The "No-Line" Rule (กฎสำคัญ — ห้ามละเมิด)
+
+❌ **ห้าม**: ใช้ `border: 1px solid` เพื่อแบ่งส่วน UI  
+✅ **ให้ใช้แทน**:
+- Tonal Shifts: เปลี่ยน background จาก `surface` → `surface-container-low`
+- Negative Space: ใช้ spacing scale 8–12 สร้าง mental boundary
+- Ghost Border: ถ้าจำเป็นจริงๆ ให้ใช้ `outline-variant` ที่ opacity 15% เท่านั้น
+
+---
+
+## 5. Component Rules
+
+### Buttons
+- **Primary CTA**: `background: linear-gradient(135deg, #d0bcff, #0566d9)` — ต้องเป็น gradient เสมอ
+- **Secondary**: `surface-container-highest` background, ไม่มี border, glow `primary` เมื่อ hover
+- **Tertiary/Ghost**: ไม่มี background, text สี `on-surface-variant`
+- ทุกปุ่ม: `border-radius: full` สำหรับ CTA หลัก, `rounded-xl` สำหรับ action รอง
+
+### Cards & Email Items
+- Unread state: `bg-surface-container-high`
+- Read state: `bg-surface-container-low`
+- Active/Selected: `bg-surface-bright` + glow `primary` ที่ 20% opacity / 15px blur
+- ห้ามใช้ divider lines ระหว่าง email items — ใช้ spacing แทน
+- Corner radius: `rounded-lg` (2rem) สำหรับ main containers
+
+### Glass Panel (Modal/Overlay/Floating Dock)
+```css
+background: rgba(23, 31, 51, 0.6);
+backdrop-filter: blur(20px);
+```
+- ใช้สำหรับ: Modals, Floating AI Hub, Command Palettes
+
+### AI Intelligence Chips
+- Background: `tertiary-container` fill แบบ subtle
+- AI "thinking" state: pulsing gradient border ด้วย token `outline`
+
+### Input Fields
+- ไม่มี bottom line หรือ box border
+- ใช้ `surface-container-lowest` inset "well" + radius `DEFAULT` (1rem)
+- Focus: transition background → `surface-container-high` + subtle `primary` shadow
+
+### Floating Gravity Hub
+- Custom component: bottom-floating dock (Glassmorphic)
+- `rounded-xl` (3rem) radius
+- Fixed bottom center: `fixed bottom-8 left-1/2 -translate-x-1/2`
+
+---
+
+## 6. Layout Structure (ทุกหน้าต้องมี)
+
+```
+┌─────────────┬──────────────────────────────────┐
+│  SideNav    │  TopBar (fixed, glassmorphic)     │
+│  w-64       ├──────────────────────────────────┤
+│  fixed      │                                  │
+│  bg-surface │         Main Content             │
+│             │         ml-64 pt-20+             │
+├─────────────┴──────────────────────────────────┤
+│       Floating AI Gravity Hub (fixed bottom)    │
+└─────────────────────────────────────────────────┘
+```
+
+### SideNavBar
+- Width: `w-64`, `fixed left-0 top-0 h-screen`
+- Background: `bg-[#0b1326]` (ไม่มี border right)
+- Logo: "Zero-G Mail" / "Weightless Intel"
+- Active nav item: `text-violet-400 bg-violet-400/10 rounded-r-full`
+- Compose button: gradient primary ที่ bottom
+
+### TopNavBar
+- `fixed top-0 right-0 left-64 h-20`
+- `bg-[#0b1326]/60 backdrop-blur-xl`
+- แสดง: Total / Important / Pending counts + "Summarize My Day" CTA
+
+---
+
+## 7. หน้าหลัก (Navigation Items)
+1. **Dashboard** — Today Digest, Priority Emails summary
+2. **Inbox AI** — 3-column layout: Categories | Email List | AI Summary Panel
+3. **Priority Tasks** — Priority Hub, task checklist with scores
+4. **Categories** — Important / Work / Finance / Promotion / Spam
+5. **Analytics** — Efficiency Pulse, Time saved, charts
+6. **Settings**
+
+---
+
+## 8. AI Feature Rules
+
+### Priority Scoring
+- คะแนน 1–100 (แสดงเป็น `XX/100`)
+- Critical (90+): สี `error` (#ffb4ab), badge `bg-error-container`
+- High (75–89): สี `tertiary` (#ffb869)
+- Standard (50–74): สี `secondary` (#adc6ff)
+- Low (<50): สี `outline` (#958ea0)
+
+### Email Categories (ไทย/อังกฤษ)
+- Important | Work | Finance | Promotion | Spam
+- แต่ละ category มีสีไอคอนต่างกัน: error / secondary / tertiary / primary / outline
+
+### AI Summary Panel (3-column inbox)
+- Short paragraph summary
+- Key Points (bullet list)
+- Action Required (checkboxes)
+- Suggested Reply (textarea + send button)
+
+---
+
+## 9. Background Atmosphere Rules
+
+ทุกหน้าต้องมี ambient glow decorations:
+```html
+<!-- Top right glow -->
+<div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<!-- Bottom left glow -->
+<div class="fixed bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-secondary-container/5 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+```
+
+---
+
+## 10. Do's and Don'ts
+
+### ✅ Do:
+- ใช้ dark mode เป็น default (`class="dark"` บน html)
+- ใช้ asymmetrical padding เพื่อไม่ให้ดู template
+- ใช้ `primary-fixed` (#e9ddff) สำหรับ high-priority AI notifications
+- ใช้ `px-8 py-6` หรือใหญ่กว่าสำหรับ main container padding
+- ใช้ Noto Sans Thai ร่วมกับ Manrope/Inter เสมอสำหรับ Thai text
+- ทุก interactive element: micro-animation (`transition-all duration-300`)
+
+### ❌ Don't:
+- ห้ามใช้ `#000000` pure black — ใช้ `background` token (#0b1326) แทน
+- ห้ามใช้ border radius น้อยกว่า 16px (1rem)
+- ห้ามทำ UI รก — ถ้าดู "busy" ให้เพิ่ม spacing
+- ห้ามใช้ plain colors (red/blue/green) — ใช้ token colors เท่านั้น
+- ห้ามใช้ 1px solid border แบ่ง section
+
+---
+
+## 11. File & Component Naming
+- Components: PascalCase (e.g., `EmailCard`, `AIGravityHub`, `PriorityScore`)
+- Pages/Views: camelCase หรือ kebab-case (e.g., `inbox-ai`, `priority-tasks`)
+- CSS classes custom: ใช้ `-` separator (e.g., `glass-panel`, `premium-gradient`)
+
+---
+
+## 12. Accessibility
+- ทุก image ต้องมี `alt` attribute (ภาษาไทยหรืออังกฤษ)
+- ทุก interactive element ต้องมี `id` เฉพาะ (สำหรับ testing)
+- ใช้ semantic HTML: `<aside>`, `<header>`, `<main>`, `<nav>`, `<section>`
+- Focus state: `focus:ring-1 focus:ring-primary`
