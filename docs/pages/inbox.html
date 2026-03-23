@@ -60,7 +60,7 @@ tailwind.config = {
     <div class="space-y-1" id="category-list">
       <button data-cat="all" class="cat-btn w-full text-left px-3 py-2.5 rounded-xl bg-surface-container-high text-primary font-semibold flex items-center justify-between text-sm">
         <span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">all_inbox</span>ทั้งหมด</span>
-        <span class="text-xs bg-primary/20 px-2 py-0.5 rounded-full">5</span>
+        <span id="count-badge" class="text-xs bg-primary/20 px-2 py-0.5 rounded-full">5</span>
       </button>
       <button data-cat="Important" class="cat-btn w-full text-left px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-2 text-sm">
         <span class="material-symbols-outlined text-sm text-error">priority_high</span>สำคัญ
@@ -137,8 +137,9 @@ tailwind.config = {
     const feed = document.getElementById('email-feed');
     feed.innerHTML = '';
     const emails = filter === 'all' ? allEmails : allEmails.filter(e => e.category === filter);
-    // Update count badge
-    document.querySelector('[data-cat="all"] span.bg-primary\/20').textContent = allEmails.length;
+    // Update count badge safely
+    const badge = document.getElementById('count-badge');
+    if (badge) badge.textContent = allEmails.length;
     emails.forEach(email => {
       const style = getScoreStyle(email.score);
       const isSelected = selectedEmail && selectedEmail.id === email.id;
@@ -275,7 +276,8 @@ tailwind.config = {
       const emails = await fetchEmails(20);
       if (emails.length) {
         allEmails = emails.sort((a, b) => b.score - a.score);
-        document.querySelector('[data-cat="all"] span.bg-primary\/20').textContent = allEmails.length;
+        const badge = document.getElementById('count-badge');
+        if (badge) badge.textContent = allEmails.length;
       }
     }
     renderFeed('all');
@@ -292,8 +294,15 @@ tailwind.config = {
     }
   }
 
+  // Init — always show mock emails immediately, upgrade to real on auth
+  renderFeed('all');
+  selectedEmail = allEmails[0] || null;
+  if (selectedEmail) { renderPanel(selectedEmail); }
+  else renderEmptyPanel();
+  
   renderAuthButton('auth-btn', () => initInbox());
-  initInbox();
+  // Also trigger real load if already signed in
+  if (isSignedIn()) initInbox();
 </script>
 </body>
 </html>
