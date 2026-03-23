@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="dark" lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zero-G Mail | อินบ็อกซ์ AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: { colors: { "primary":"#d0bcff","secondary":"#adc6ff","tertiary":"#ffb869","on-primary":"#3c0091","secondary-container":"#0566d9","on-secondary-container":"#e6ecff","tertiary-container":"#ca801e","primary-fixed":"#e9ddff","primary-container":"#a078ff","surface":"#0b1326","background":"#0b1326","surface-dim":"#0b1326","surface-container-lowest":"#060e20","surface-container-low":"#131b2e","surface-container":"#171f33","surface-container-high":"#222a3d","surface-container-highest":"#2d3449","surface-bright":"#31394d","surface-variant":"#2d3449","on-surface":"#dae2fd","on-background":"#dae2fd","on-surface-variant":"#cbc3d7","error":"#ffb4ab","error-container":"#93000a","on-error-container":"#ffdad6","outline":"#958ea0","outline-variant":"#494454","inverse-primary":"#6d3bd7" }, fontFamily: { "headline":["Manrope","Noto Sans Thai"],"body":["Inter","Noto Sans Thai"],"label":["Inter","Noto Sans Thai"] }, borderRadius: { "DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px" } } }
+}
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .glass-panel { background: rgba(23,31,51,0.6); backdrop-filter: blur(20px); }
+  .premium-gradient { background: linear-gradient(135deg, #d0bcff 0%, #0566d9 100%); }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(208,188,255,0.1); border-radius: 10px; }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+
+<!-- Atmosphere Glows -->
+<div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-secondary-container/5 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+
+<!-- SideNav -->
+<aside id="side-nav" class="h-screen w-64 fixed left-0 top-0 bg-[#0b1326] flex flex-col py-8 z-50 font-headline tracking-tight"></aside>
+
+<!-- TopNav -->
+<header class="fixed top-0 right-0 left-64 h-20 bg-[#0b1326]/60 backdrop-blur-xl flex items-center justify-between px-12 z-40 shadow-2xl shadow-black/20 font-headline text-sm font-medium">
+  <div class="flex items-center gap-8">
+    <div class="relative">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+      <input id="search-input" class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-6 w-64 text-on-surface focus:ring-1 focus:ring-primary transition-all text-sm outline-none" placeholder="ค้นหาอัจฉริยะ..." type="text"/>
+    </div>
+    <div class="flex gap-6">
+      <span class="text-violet-300 border-b-2 border-violet-400 pb-1 cursor-default">ทั้งหมด: 124</span>
+      <span class="text-slate-400 hover:text-white transition-colors cursor-pointer">สำคัญ: 12</span>
+      <span class="text-slate-400 hover:text-white transition-colors cursor-pointer">รอดำเนินการ: 5</span>
+    </div>
+  </div>
+  <div class="flex items-center gap-6">
+    <button class="bg-surface-container-highest/50 px-5 py-2 rounded-full hover:text-white transition-colors text-sm flex items-center gap-2">
+      ✨ สรุปวันนี้
+    </button>
+    <div class="flex gap-4 text-slate-400">
+      <span class="material-symbols-outlined cursor-pointer hover:text-white transition-colors">notifications</span>
+      <span class="material-symbols-outlined cursor-pointer hover:text-white transition-colors">account_circle</span>
+    </div>
+  </div>
+</header>
+
+<!-- 3-Column Grid -->
+<main class="ml-64 pt-20 min-h-screen grid overflow-hidden" style="grid-template-columns: 180px 1fr 380px;">
+
+  <!-- Col 1: Intelligence Hub -->
+  <section class="bg-[#0b1326] p-5 border-r border-white/5 overflow-y-auto">
+    <h3 class="font-headline font-bold text-sm mb-5 tracking-tight text-on-surface">Intelligence Hub</h3>
+    <div class="space-y-1" id="category-list">
+      <button data-cat="all" class="cat-btn w-full text-left px-3 py-2.5 rounded-xl bg-surface-container-high text-primary font-semibold flex items-center justify-between text-sm">
+        <span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">all_inbox</span>ทั้งหมด</span>
+        <span class="text-xs bg-primary/20 px-2 py-0.5 rounded-full">5</span>
+      </button>
+      <button data-cat="Important" class="cat-btn w-full text-left px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-2 text-sm">
+        <span class="material-symbols-outlined text-sm text-error">priority_high</span>สำคัญ
+      </button>
+      <button data-cat="Work" class="cat-btn w-full text-left px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-2 text-sm">
+        <span class="material-symbols-outlined text-sm text-secondary">work</span>งาน
+      </button>
+      <button data-cat="Finance" class="cat-btn w-full text-left px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-2 text-sm">
+        <span class="material-symbols-outlined text-sm text-tertiary">account_balance_wallet</span>การเงิน
+      </button>
+      <button data-cat="Promotion" class="cat-btn w-full text-left px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-2 text-sm">
+        <span class="material-symbols-outlined text-sm text-primary">campaign</span>โปรโมชัน
+      </button>
+      <button data-cat="Spam" class="cat-btn w-full text-left px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center gap-2 text-sm">
+        <span class="material-symbols-outlined text-sm text-outline">report</span>สแปม
+      </button>
+    </div>
+    <div class="mt-8 bg-surface-container-low rounded-lg p-3">
+      <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Storage</p>
+      <div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+        <div class="h-full premium-gradient" style="width:65%"></div>
+      </div>
+      <p class="text-xs text-on-surface-variant mt-1.5">12.4 GB / 20 GB</p>
+    </div>
+  </section>
+
+  <!-- Col 2: Email Feed -->
+  <section class="bg-[#0b1326] p-8 overflow-y-auto" style="max-height:calc(100vh - 5rem)">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="font-headline font-extrabold text-2xl tracking-tighter">Active Stream</h2>
+      <div class="flex gap-2">
+        <button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-sm">filter_list</span>
+        </button>
+        <button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-sm">sort</span>
+        </button>
+      </div>
+    </div>
+    <div id="email-feed" class="space-y-3"></div>
+  </section>
+
+  <!-- Col 3: AI Summary Panel -->
+  <section id="ai-panel" class="bg-surface-container-low p-8 border-l border-white/5 overflow-y-auto" style="max-height:calc(100vh - 5rem)">
+    <!-- Loaded by JS -->
+  </section>
+
+</main>
+
+<!-- Floating AI Hub -->
+<div class="fixed bottom-6 left-[calc(50%+128px)] -translate-x-1/2 glass-panel px-5 py-3 rounded-xl flex items-center gap-2 z-50 shadow-2xl border border-white/5">
+  <div class="flex items-center gap-2 border-r border-white/10 pr-5">
+    <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+    <p class="text-xs font-bold text-primary tracking-widest uppercase">AI Online</p>
+  </div>
+  <button class="p-2 rounded-full hover:bg-white/10 text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-sm">psychology</span></button>
+  <button class="p-2 rounded-full hover:bg-white/10 text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-sm">auto_graph</span></button>
+  <button class="p-2 rounded-full hover:bg-white/10 text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-sm">draw</span></button>
+</div>
+
+<script src="../assets/mock-data.js"></script>
+<script src="../assets/nav.js"></script>
+<script>
+  renderSideNav('อินบ็อกซ์ AI', '../');
+
+  let selectedEmail = null;
+  let currentFilter = 'all';
+
+  function renderFeed(filter) {
+    const feed = document.getElementById('email-feed');
+    feed.innerHTML = '';
+    const emails = filter === 'all' ? MOCK_EMAILS : MOCK_EMAILS.filter(e => e.category === filter);
+    emails.forEach(email => {
+      const style = getScoreStyle(email.score);
+      const isSelected = selectedEmail && selectedEmail.id === email.id;
+      const div = document.createElement('div');
+      div.className = `p-5 rounded-lg cursor-pointer transition-all border-l-4 ${style.border} ${isSelected ? 'bg-surface-container-high shadow-xl' : 'bg-surface-container-low hover:bg-surface-container'}`;
+      div.innerHTML = `
+        <div class="flex justify-between items-start mb-1.5">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-full bg-surface-container-highest flex items-center justify-center text-xs font-bold shrink-0">${email.initials}</div>
+            <span class="font-bold text-white text-sm">${email.sender}</span>
+          </div>
+          <span class="text-xs text-slate-500">${email.time}</span>
+        </div>
+        <p class="font-medium text-sm ${isSelected ? 'text-on-surface' : 'text-on-surface-variant'} line-clamp-1 mb-1.5">${email.subject}</p>
+        <div class="flex items-center gap-2">
+          <span class="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${style.badgeBg}">
+            <span class="w-1 h-1 rounded-full bg-current"></span>${email.categoryLabel}
+          </span>
+          <span class="text-xs text-on-surface-variant">Score: <span class="${style.color} font-bold">${email.score}</span></span>
+        </div>`;
+      div.addEventListener('click', () => { selectedEmail = email; renderFeed(currentFilter); renderPanel(email); });
+      feed.appendChild(div);
+    });
+  }
+
+  function renderPanel(email) {
+    const panel = document.getElementById('ai-panel');
+    panel.innerHTML = `
+      <div class="flex items-center gap-3 mb-8">
+        <div class="p-2 bg-primary/20 rounded-lg">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">auto_awesome</span>
+        </div>
+        <h3 class="font-headline font-bold text-xl tracking-tight">AI สรุปอัจฉริยะ</h3>
+      </div>
+
+      <div class="bg-surface-container p-5 rounded-lg border border-primary/10 mb-6">
+        <p class="text-sm text-on-surface-variant leading-relaxed">${email.summary}</p>
+      </div>
+
+      <h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">จุดสำคัญ</h4>
+      <ul class="space-y-2.5 mb-6">
+        ${email.keyPoints.map(p => `
+        <li class="flex items-start gap-3 text-sm text-on-surface">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>${p}
+        </li>`).join('')}
+      </ul>
+
+      <h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">สิ่งที่ต้องทำ</h4>
+      <div class="space-y-2 mb-6">
+        ${email.actions.map(a => `
+        <label class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded-lg border border-transparent hover:border-primary/20 cursor-pointer">
+          <input class="w-4 h-4 rounded accent-violet-400" type="checkbox"/>
+          <span class="text-sm">${a}</span>
+        </label>`).join('')}
+      </div>
+
+      <h4 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">ตอบกลับที่แนะนำ</h4>
+      <div class="relative mb-4">
+        <textarea id="reply-box" class="w-full h-32 bg-surface-container-lowest border-none rounded-xl p-4 text-sm text-on-surface leading-relaxed focus:ring-1 focus:ring-primary/40 outline-none resize-none">${email.suggestedReply}</textarea>
+        <div class="absolute bottom-3 right-3 flex gap-1.5">
+          <button class="p-1.5 bg-surface-container-high rounded-lg text-slate-400 hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-sm">content_copy</span>
+          </button>
+          <button class="p-1.5 bg-surface-container-high rounded-lg text-slate-400 hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-sm">edit</span>
+          </button>
+        </div>
+      </div>
+
+      <button class="w-full py-4 premium-gradient text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">send</span>
+        ส่งการตอบกลับ
+      </button>`;
+  }
+
+  function renderEmptyPanel() {
+    const panel = document.getElementById('ai-panel');
+    panel.innerHTML = `
+      <div class="h-full flex flex-col items-center justify-center text-center space-y-4 opacity-50">
+        <div class="p-4 bg-primary/10 rounded-full">
+          <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings:'FILL' 1;">auto_awesome</span>
+        </div>
+        <p class="font-headline font-bold text-lg">เลือกอีเมลเพื่อดูสรุป AI</p>
+        <p class="text-sm text-on-surface-variant max-w-xs">Zero-G Intel จะวิเคราะห์และสรุปอีเมลให้คุณทันที</p>
+      </div>`;
+  }
+
+  // Category filter
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentFilter = btn.dataset.cat;
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.className = b.className.replace('bg-surface-container-high text-primary font-semibold', 'text-on-surface-variant hover:bg-surface-container-low');
+      });
+      btn.className = btn.className.replace('text-on-surface-variant hover:bg-surface-container-low', 'bg-surface-container-high text-primary font-semibold');
+      selectedEmail = null;
+      renderFeed(currentFilter);
+      renderEmptyPanel();
+    });
+  });
+
+  // Init
+  renderFeed('all');
+  // Auto-select first email
+  selectedEmail = MOCK_EMAILS[0];
+  renderFeed('all');
+  renderPanel(MOCK_EMAILS[0]);
+
+  // URL param
+  const params = new URLSearchParams(window.location.search);
+  const emailId = parseInt(params.get('email'));
+  if (emailId) {
+    const found = MOCK_EMAILS.find(e => e.id === emailId);
+    if (found) { selectedEmail = found; renderFeed('all'); renderPanel(found); }
+  }
+</script>
+</body>
+</html>

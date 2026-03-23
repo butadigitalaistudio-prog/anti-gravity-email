@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="dark" lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zero-G Mail | แดชบอร์ด</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#d0bcff",
+        "secondary": "#adc6ff",
+        "tertiary": "#ffb869",
+        "on-primary": "#3c0091",
+        "secondary-container": "#0566d9",
+        "on-secondary-container": "#e6ecff",
+        "tertiary-container": "#ca801e",
+        "primary-fixed": "#e9ddff",
+        "primary-container": "#a078ff",
+        "surface": "#0b1326",
+        "background": "#0b1326",
+        "surface-dim": "#0b1326",
+        "surface-container-lowest": "#060e20",
+        "surface-container-low": "#131b2e",
+        "surface-container": "#171f33",
+        "surface-container-high": "#222a3d",
+        "surface-container-highest": "#2d3449",
+        "surface-bright": "#31394d",
+        "surface-variant": "#2d3449",
+        "on-surface": "#dae2fd",
+        "on-background": "#dae2fd",
+        "on-surface-variant": "#cbc3d7",
+        "error": "#ffb4ab",
+        "error-container": "#93000a",
+        "on-error-container": "#ffdad6",
+        "outline": "#958ea0",
+        "outline-variant": "#494454",
+        "inverse-primary": "#6d3bd7",
+      },
+      fontFamily: {
+        "headline": ["Manrope", "Noto Sans Thai"],
+        "body": ["Inter", "Noto Sans Thai"],
+        "label": ["Inter", "Noto Sans Thai"],
+      },
+      borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+    },
+  },
+}
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .glass-panel { background: rgba(23,31,51,0.6); backdrop-filter: blur(20px); }
+  .premium-gradient { background: linear-gradient(135deg, #d0bcff 0%, #0566d9 100%); }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(208,188,255,0.1); border-radius: 10px; }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+
+<!-- Atmosphere Glows -->
+<div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-secondary-container/5 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+
+<!-- SideNav -->
+<aside id="side-nav" class="h-screen w-64 fixed left-0 top-0 bg-[#0b1326] flex flex-col py-8 z-50 font-headline tracking-tight"></aside>
+
+<!-- TopNav -->
+<header class="fixed top-0 right-0 left-64 h-20 bg-[#0b1326]/60 backdrop-blur-xl flex items-center justify-between px-12 z-40 shadow-2xl shadow-black/20 font-headline text-sm font-medium">
+  <div class="flex items-center gap-8">
+    <div class="flex items-center gap-6">
+      <span class="text-violet-300 border-b-2 border-violet-400 py-2">สำคัญ: 12</span>
+      <span class="text-slate-400 hover:text-white transition-colors cursor-default">ทั้งหมด: 124</span>
+      <span class="text-slate-400 hover:text-white transition-colors cursor-default">รอดำเนินการ: 5</span>
+    </div>
+  </div>
+  <div class="flex items-center gap-6">
+    <button class="premium-gradient px-6 py-2 rounded-full text-on-primary font-bold hover:shadow-[0_0_20px_rgba(208,188,255,0.4)] transition-all text-sm">
+      ✨ สรุปภาพรวมวันนี้
+    </button>
+    <div class="flex items-center gap-4 text-slate-400">
+      <span class="material-symbols-outlined cursor-pointer hover:text-white transition-colors" id="notif-btn">notifications</span>
+      <span class="material-symbols-outlined cursor-pointer hover:text-white transition-colors">account_circle</span>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="ml-64 min-h-screen relative pb-32">
+  <div class="pt-28 px-12 max-w-7xl mx-auto space-y-12">
+
+    <!-- Today Digest -->
+    <section>
+      <div class="glass-panel p-10 rounded-lg relative overflow-hidden group">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 blur-[100px] rounded-full group-hover:bg-primary/20 transition-all duration-700"></div>
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-2 space-y-6">
+            <div class="flex items-center gap-3">
+              <span class="bg-tertiary-container/30 text-tertiary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">bolt</span>
+                ข้อมูลจาก AI
+              </span>
+              <span class="text-slate-500 text-sm">สร้างเมื่อ 2 นาทีที่แล้ว</span>
+            </div>
+            <h2 class="text-4xl font-headline font-extrabold text-white tracking-tight leading-tight">
+              เช้านี้ดูเรียบร้อย แต่มี <span class="text-primary italic">'การอนุมัติสัญญา Q3'</span> ด่วน 1 ฉบับที่ต้องดำเนินการก่อนบ่าย 2 โมง
+            </h2>
+            <ul class="space-y-4 pt-4">
+              <li class="flex items-start gap-4">
+                <div class="w-6 h-6 rounded-full bg-error/20 flex items-center justify-center mt-1 shrink-0">
+                  <span class="material-symbols-outlined text-xs text-error">priority_high</span>
+                </div>
+                <p class="text-on-surface-variant leading-relaxed">Elena Rodriguez ต้องการลายเซ็นภาคผนวก B ภายใน 14:00 วันนี้</p>
+              </li>
+              <li class="flex items-start gap-4">
+                <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mt-1 shrink-0">
+                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+                </div>
+                <p class="text-on-surface-variant leading-relaxed">Marcus Thorne ส่ง Brand Deck ใหม่มาขอ feedback ก่อนศุกร์นี้</p>
+              </li>
+              <li class="flex items-start gap-4">
+                <div class="w-6 h-6 rounded-full bg-tertiary-container/20 flex items-center justify-center mt-1 shrink-0">
+                  <span class="material-symbols-outlined text-xs text-tertiary">lightbulb</span>
+                </div>
+                <p class="text-on-surface-variant leading-relaxed">Security Audit ถูกกำหนดไว้สัปดาห์หน้า — Global Systems ยืนยันแล้ว</p>
+              </li>
+            </ul>
+            <div class="flex items-center gap-4 pt-6">
+              <button class="flex items-center gap-2 px-8 py-3 bg-surface-container-highest rounded-full font-bold hover:bg-white/10 transition-colors text-sm">
+                <span class="material-symbols-outlined">play_circle</span>
+                ฟังเสียงสรุป
+              </button>
+              <a href="pages/inbox.html" class="flex items-center gap-2 px-8 py-3 border border-outline-variant/30 rounded-full font-bold hover:bg-white/5 transition-colors text-sm">
+                ดูอินบ็อกซ์ทั้งหมด
+              </a>
+            </div>
+          </div>
+          <!-- Progress Card -->
+          <div class="hidden lg:block">
+            <div class="aspect-square bg-surface-container-low rounded-lg p-6 border border-outline-variant/20 flex flex-col justify-between">
+              <div class="space-y-2">
+                <p class="text-xs text-slate-500 uppercase tracking-widest font-bold">เป้าหมายวันนี้</p>
+                <p class="text-2xl font-bold">งานสำคัญ</p>
+              </div>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-xs font-medium text-slate-400 mb-2">
+                    <span>อีเมลที่จัดการแล้ว</span>
+                    <span>68%</span>
+                  </div>
+                  <div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+                    <div class="h-full w-[68%] premium-gradient transition-all duration-700"></div>
+                  </div>
+                </div>
+                <div class="bg-primary/5 rounded-lg p-4 border border-primary/10">
+                  <p class="text-[10px] text-primary font-bold uppercase mb-1">ด่วน</p>
+                  <p class="text-sm font-semibold">ลงนามสัญญา Q3</p>
+                  <p class="text-xs text-slate-500">ภายใน 14:00 วันนี้</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Priority Emails -->
+    <section class="space-y-6 pb-4">
+      <div class="flex items-end justify-between">
+        <div>
+          <h3 class="text-2xl font-headline font-bold text-white">อีเมลสำคัญ</h3>
+          <p class="text-sm text-slate-500 mt-1">คัดสรรโดย Zero-G Intel ตามรูปแบบการทำงานของคุณ</p>
+        </div>
+        <a href="pages/inbox.html" class="text-primary text-sm font-bold flex items-center gap-2 hover:underline">
+          ดูทั้งหมด
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+      <div id="email-list" class="grid grid-cols-1 gap-4"></div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Floating AI Hub -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 glass-panel px-6 py-4 rounded-xl flex items-center gap-2 z-50 shadow-2xl shadow-black/40 border border-white/5">
+  <button class="flex items-center gap-2 text-primary font-bold px-4 py-2 hover:bg-primary/10 rounded-lg transition-all text-sm">
+    <span class="material-symbols-outlined text-sm">mic</span>
+    สั่งการด้วยเสียง
+  </button>
+  <div class="w-[1px] h-6 bg-outline-variant/30 mx-1"></div>
+  <button class="flex items-center gap-2 text-on-surface-variant font-bold px-4 py-2 hover:bg-white/5 rounded-lg transition-all text-sm">
+    <span class="material-symbols-outlined text-sm">search</span>
+    ค้นหาอัจฉริยะ
+  </button>
+  <div class="w-[1px] h-6 bg-outline-variant/30 mx-1"></div>
+  <button class="flex items-center gap-2 text-on-surface-variant font-bold px-4 py-2 hover:bg-white/5 rounded-lg transition-all text-sm">
+    <span class="material-symbols-outlined text-sm">auto_fix_high</span>
+    จัดระเบียบ
+  </button>
+  <div class="w-[1px] h-6 bg-outline-variant/30 mx-1"></div>
+  <div class="flex items-center gap-2 px-4">
+    <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+    <p class="text-xs font-bold text-primary tracking-widest uppercase">AI Online</p>
+  </div>
+</div>
+
+<script src="assets/mock-data.js"></script>
+<script src="assets/nav.js"></script>
+<script>
+  renderSideNav('แดชบอร์ด');
+
+  // Render top 3 emails
+  const emailList = document.getElementById('email-list');
+  MOCK_EMAILS.slice(0, 3).forEach(email => {
+    const style = getScoreStyle(email.score);
+    emailList.innerHTML += `
+      <a href="pages/inbox.html?email=${email.id}" class="group flex items-center gap-6 p-6 rounded-lg bg-surface-container-high hover:bg-surface-bright transition-all cursor-pointer border-l-4 ${style.border} no-underline">
+        <div class="flex flex-col items-center justify-center min-w-[60px]">
+          <span class="text-2xl font-extrabold ${style.color}">${email.score}</span>
+          <span class="text-[10px] text-slate-500 uppercase font-bold">Score</span>
+        </div>
+        <div class="w-12 h-12 rounded-full bg-surface-container-highest shrink-0 flex items-center justify-center">
+          <span class="text-sm font-bold text-slate-300">${email.initials}</span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1">
+            <h4 class="font-bold text-white truncate">${email.sender}</h4>
+            <span class="text-[10px] ${style.badgeBg} px-2 py-0.5 rounded uppercase font-bold shrink-0">${email.categoryLabel}</span>
+          </div>
+          <p class="text-on-surface-variant text-sm truncate">${email.subject}</p>
+        </div>
+        <div class="flex items-center gap-6 shrink-0">
+          <span class="text-xs text-slate-500 font-medium">${email.time}</span>
+          <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button onclick="event.preventDefault()" class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-primary/20 hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-sm">archive</span>
+            </button>
+            <button onclick="event.preventDefault()" class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-error/20 hover:text-error transition-colors">
+              <span class="material-symbols-outlined text-sm">delete</span>
+            </button>
+          </div>
+        </div>
+      </a>`;
+  });
+</script>
+</body>
+</html>

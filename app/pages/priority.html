@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="dark" lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zero-G Mail | ลำดับความสำคัญ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: { colors: { "primary":"#d0bcff","secondary":"#adc6ff","tertiary":"#ffb869","on-primary":"#3c0091","secondary-container":"#0566d9","on-secondary-container":"#e6ecff","tertiary-container":"#ca801e","primary-fixed":"#e9ddff","primary-container":"#a078ff","surface":"#0b1326","background":"#0b1326","surface-dim":"#0b1326","surface-container-lowest":"#060e20","surface-container-low":"#131b2e","surface-container":"#171f33","surface-container-high":"#222a3d","surface-container-highest":"#2d3449","surface-bright":"#31394d","surface-variant":"#2d3449","on-surface":"#dae2fd","on-background":"#dae2fd","on-surface-variant":"#cbc3d7","error":"#ffb4ab","error-container":"#93000a","on-error-container":"#ffdad6","outline":"#958ea0","outline-variant":"#494454","inverse-primary":"#6d3bd7" }, fontFamily: { "headline":["Manrope","Noto Sans Thai"],"body":["Inter","Noto Sans Thai"] }, borderRadius: { "DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px" } } }
+}
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .glass-panel { background: rgba(23,31,51,0.6); backdrop-filter: blur(20px); }
+  .premium-gradient { background: linear-gradient(135deg, #d0bcff 0%, #0566d9 100%); }
+  .glow-primary { box-shadow: 0 0 20px rgba(208,188,255,0.2); }
+  body { background-color: #0b1326; color: #dae2fd; }
+</style>
+</head>
+<body class="font-body selection:bg-primary/30">
+
+<!-- Atmosphere Glows -->
+<div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-secondary-container/5 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+
+<!-- SideNav -->
+<aside id="side-nav" class="h-screen w-64 fixed left-0 top-0 bg-[#0b1326] flex flex-col py-8 z-50 font-headline tracking-tight"></aside>
+
+<!-- TopNav -->
+<header class="fixed top-0 right-0 left-64 h-20 bg-[#0b1326]/60 backdrop-blur-xl flex items-center justify-between px-12 z-40 shadow-2xl shadow-black/20 font-headline text-sm font-medium">
+  <div class="flex items-center gap-8">
+    <div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full text-on-surface-variant">
+      <span class="material-symbols-outlined text-sm">search</span>
+      <input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-outline outline-none" placeholder="ค้นหา intel..." type="text"/>
+    </div>
+    <div class="flex items-center gap-6 text-slate-400">
+      <span class="text-violet-300 border-b-2 border-violet-400 py-1">ทั้งหมด: 124</span>
+      <span class="hover:text-white transition-colors cursor-pointer">สำคัญ: 12</span>
+      <span class="hover:text-white transition-colors cursor-pointer">รอดำเนินการ: 5</span>
+    </div>
+  </div>
+  <div class="flex items-center gap-4">
+    <button class="text-violet-400 hover:glow-primary transition-all px-4 py-2 rounded-full border border-violet-400/20 text-sm">
+      ✨ สรุปวันนี้
+    </button>
+    <div class="flex items-center gap-2">
+      <button class="p-2 text-slate-400 hover:text-white transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+      <button class="p-2 text-slate-400 hover:text-white transition-colors"><span class="material-symbols-outlined">account_circle</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="ml-64 pt-28 pb-32 px-12">
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Header -->
+    <div class="mb-12 flex items-end justify-between">
+      <div>
+        <h2 class="text-5xl font-headline font-extrabold tracking-tight mb-2">Priority Hub</h2>
+        <p class="text-on-surface-variant max-w-md">รายการงานที่ AI คัดสรร ที่ต้องการความสนใจทันที</p>
+      </div>
+      <div class="bg-tertiary-container/20 text-tertiary px-6 py-3 rounded-lg border border-tertiary/10 flex items-center gap-3">
+        <span class="material-symbols-outlined">bolt</span>
+        <div>
+          <p class="text-[10px] uppercase tracking-widest font-bold opacity-70 leading-none mb-1">Focus Mode</p>
+          <p class="text-sm font-bold leading-none">High Velocity</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task List -->
+    <div class="space-y-4" id="task-list"></div>
+
+  </div>
+</main>
+
+<!-- Floating AI Hub -->
+<div class="fixed bottom-10 left-[calc(50%+128px)] -translate-x-1/2 z-50">
+  <div class="bg-surface-container/60 backdrop-blur-2xl px-8 py-4 rounded-xl shadow-2xl border border-white/5 flex items-center gap-8">
+    <div class="flex items-center gap-3 border-r border-white/10 pr-8">
+      <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">auto_awesome</span>
+      <p class="text-xs font-bold tracking-tight">AI แนะนำงานเพิ่ม 2 รายการ</p>
+    </div>
+    <div class="flex gap-2">
+      <button class="premium-gradient text-on-primary px-6 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform">แสดงเพิ่ม</button>
+      <button class="bg-surface-container-highest text-on-surface px-6 py-2 rounded-full text-sm font-bold hover:bg-surface-bright">ปิด</button>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/mock-data.js"></script>
+<script src="../assets/nav.js"></script>
+<script>
+  renderSideNav('ลำดับความสำคัญ', '../');
+
+  const list = document.getElementById('task-list');
+  list.innerHTML = `<h3 class="text-xs font-bold uppercase tracking-[0.2em] text-outline mb-4">งานที่ต้องทำตอนนี้</h3>`;
+
+  MOCK_TASKS.forEach(task => {
+    const div = document.createElement('div');
+    div.className = `group relative ${task.bg} p-8 rounded-lg flex items-center gap-8 transition-all duration-300 hover:bg-surface-bright hover:shadow-2xl hover:shadow-primary/5`;
+    div.innerHTML = `
+      <div class="flex-shrink-0">
+        <input class="w-8 h-8 rounded-full border-2 border-outline bg-transparent accent-violet-400 cursor-pointer" type="checkbox"
+          onchange="this.closest('div.group').classList.toggle('opacity-40')"/>
+      </div>
+      <div class="flex-grow">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-[10px] font-bold uppercase tracking-widest ${task.labelBg} ${task.labelText} px-2 py-0.5 rounded">${task.label}</span>
+          <span class="text-xs text-outline">จาก: ${task.from}</span>
+        </div>
+        <h4 class="text-xl font-headline font-bold text-white mb-1">${task.title}</h4>
+        <p class="text-on-surface-variant text-sm line-clamp-1">${task.desc}</p>
+      </div>
+      <div class="flex flex-col items-end gap-4 shrink-0">
+        <div class="text-right">
+          <p class="text-[10px] text-outline uppercase font-bold tracking-widest mb-1">Priority Score</p>
+          <p class="text-3xl font-headline font-extrabold ${task.scoreColor}">${task.score}<span class="text-xs opacity-50 ml-0.5">/100</span></p>
+        </div>
+        <button class="opacity-0 group-hover:opacity-100 bg-surface-container-highest px-4 py-2 rounded-full text-xs font-bold text-on-surface transition-all active:scale-95 border border-outline-variant/30">
+          เสร็จแล้ว ✓
+        </button>
+      </div>`;
+    list.appendChild(div);
+  });
+</script>
+</body>
+</html>
