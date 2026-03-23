@@ -1,6 +1,6 @@
 // Zero-G Mail — Gemini AI Summarization Module
 // Replace YOUR_GEMINI_API_KEY with your actual key from https://aistudio.google.com/
-const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY';
+const GEMINI_API_KEY = 'AIzaSyBTu1Scm3zEP_D2jLFN8vX6ijTGN06Y1dQ';
 const GEMINI_API = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 async function callGemini(prompt) {

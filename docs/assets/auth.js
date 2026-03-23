@@ -1,6 +1,6 @@
 // Zero-G Mail — Google OAuth Authentication
 // Replace YOUR_CLIENT_ID with your actual Google OAuth Client ID
-const GOOGLE_CLIENT_ID = 'YOUR_CLIENT_ID.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = '106853353448-lqhcfomf9g47insfgsr9u7dsiskb7qqh.apps.googleusercontent.com';
 
 const GMAIL_SCOPES = [
   'https://www.googleapis.com/auth/gmail.readonly',
